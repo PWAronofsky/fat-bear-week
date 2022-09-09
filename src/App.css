@@ -36,3 +36,49 @@
     transform: rotate(360deg);
   }
 }
+
+/* Bracket */
+.container {
+  display: flex;
+  flex-direction: row;
+  height:100vh;
+  background: url(/src/images/fatBearBackground.jpeg);
+  background-size: cover;
+  background-color: #158589;
+  background-repeat: no-repeat;
+}
+
+.column {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.right {
+  align-items: flex-end;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.round-two {
+  padding-top: 15vmin;
+  padding-bottom: 15vmin;
+}
+
+.matchup {
+  padding: 20px
+}
+
+.bear-image {
+  height: 80px;
+  width: 128px;
+}
+
+.missing-image {
+  height: 40px;
+  width: 40px;
+}
