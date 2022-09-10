@@ -6,8 +6,39 @@ import { Bear } from '../Bear/Bear';
 import {  MatchupMap, MatchupType } from '../types';
 import '../App.css';
 
-const getBearField = (matchupId: number) => {
+const getNextBearField = (matchupId: number) => {
   return matchupId % 2 === 0 ? 'bear1' : 'bear2';
+}
+
+const checkShouldClearDownstream = (pickedWinner?: number, bearId?: number) => {
+  return pickedWinner && pickedWinner === bearId;
+}
+
+const clearDownstreamMatchups = (matchups: MatchupMap, matchupId: number): MatchupMap => {
+  const nextBearField = getNextBearField(matchupId);
+  const currentMatchup = matchups[matchupId];
+  const nextMatchup = matchups[currentMatchup?.nextMatchup];
+
+  if(!nextMatchup)
+    return matchups;
+
+  const shouldClearDownstream = checkShouldClearDownstream(nextMatchup.pickedWinner, nextMatchup[nextBearField]?.id);
+
+  console.log(`Matchup: ${matchupId}, NextBearField: ${nextBearField}, NextMatchup: ${nextMatchup.id}`)
+  matchups = {
+    ...matchups,
+    [nextMatchup.id]: {
+      ...nextMatchup,
+      pickedWinner: undefined,
+      [nextBearField]: undefined
+    }
+  }
+
+  if(shouldClearDownstream) {
+    matchups = clearDownstreamMatchups(matchups, nextMatchup.id);
+  }
+
+  return matchups;
 }
 
 //TODO: loading logic.
@@ -15,18 +46,44 @@ export const Bracket = () => {
   const [matchupMap, setMatchupMap] = React.useState(mockMatchupMap);
 
   const pickWinner = (matchupId: number, bearId: number) => {
-    const bearField = getBearField(matchupId);
-
     let currentMatchup = matchupMap[matchupId];
-    let nextMatchup = matchupMap[currentMatchup.nextMatchup];
+
+    // If picked winner is already the picked bear, do nothing
+    if(currentMatchup.pickedWinner === bearId)
+      return;
 
     currentMatchup.pickedWinner = bearId;
-    nextMatchup[bearField] = mockBears.find(bear => bear.id === bearId);
 
+    let nextMatchup = matchupMap[currentMatchup.nextMatchup];
     let newMatchups = {
-      ...matchupMap,
-      [matchupId]: currentMatchup,
-      [nextMatchup.id]: nextMatchup
+      ...matchupMap
+    };
+
+    // If there is a next matchup, set the bear to the appropriate field, and clear downstream if needed
+    if (nextMatchup) {
+      const nextBearField = getNextBearField(matchupId);
+      const shouldClearDownstream = checkShouldClearDownstream(nextMatchup.pickedWinner, nextMatchup[nextBearField]?.id);
+
+      
+      if(shouldClearDownstream) {
+        newMatchups = clearDownstreamMatchups(newMatchups, nextMatchup.id);
+      }
+
+      nextMatchup[nextBearField] = mockBears.find(bear => bear.id === bearId);
+
+      newMatchups = {
+        ...newMatchups,
+        [matchupId]: currentMatchup,
+        [nextMatchup.id]: nextMatchup
+      };
+
+    } else {
+      // Otherwise, pick this bear as Championship winner
+      newMatchups = {
+        ...newMatchups,
+        [matchupId]: currentMatchup,
+      };
+      // setChampionshipWinner(bearId);
     }
 
     setMatchupMap(newMatchups);
