@@ -1,5 +1,6 @@
 import React from 'react';
 import { BearType } from '../types';
+import { a11yLabels } from '../a11yLabels';
 
 export interface BearProps {
   bear?: BearType
@@ -17,10 +18,10 @@ export const Bear = ({ bear, pickThisBear }: BearProps) => {
 
   return (
     <div className="bear">
-      <button className="profile-pic" onClick={() => setShowAfterPic(!showAfterPic)}>
+      <button aria-label={a11yLabels.beforeAfterButton(showAfterPic, bear?.tagNumber, bear?.name)} className="profile-pic" onClick={() => setShowAfterPic(!showAfterPic)}>
           <img className={imgStyle} src={showAfterPic ? afterImage :beforeImage} />
       </button>
-      <button className="bear-name" onClick={()=> pickThisBear(bear?.id)}>
+      <button aria-label={a11yLabels.pickBear(bear?.tagNumber, bear?.name)} className="bear-name" onClick={()=> pickThisBear(bear?.id)}>
         {bear?.tagNumber} {bear?.name}
       </button>
     </div>
