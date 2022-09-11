@@ -29,7 +29,7 @@ export const clearDownstreamMatchups = (matchups: MatchupMap, matchupId: number)
     ...matchups,
     [nextMatchup.id]: {
       ...nextMatchup,
-      pickedWinner: undefined,
+      pickedWinner: shouldClearDownstream ? undefined : nextMatchup.pickedWinner,
       [nextBearField]: undefined
     }
   }
@@ -66,7 +66,9 @@ export const Bracket = () => {
 
       
       if(shouldClearDownstream) {
-        newMatchups = clearDownstreamMatchups(newMatchups, nextMatchup.id);
+        newMatchups = clearDownstreamMatchups(newMatchups, matchupId);
+        // clearDownstream will update the next matchup, so we need to update our nextMatchup object
+        nextMatchup = newMatchups[nextMatchup.id];
       }
 
       nextMatchup[nextBearField] = mockBears.find(bear => bear.id === bearId);

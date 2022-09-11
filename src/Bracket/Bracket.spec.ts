@@ -1,3 +1,4 @@
+import { mockMatchupMap, mockBears } from '../mockData';
 import { getNextBearField, checkShouldClearDownstream, clearDownstreamMatchups } from './Bracket';
 
 describe('Bracket Functions', () => {
@@ -22,7 +23,68 @@ describe('Bracket Functions', () => {
         expect(shouldClearDownstream).toBeFalsy();
     });
 
-    // test('changing round 1 matchup clears all downstream matchups', () => {
+    test('changing round 1 matchup clears all downstream matchups', () => {
+        const filledBracket = {
+            ...mockMatchupMap,
+            [5]: {
+                ...mockMatchupMap[5],
+                bear1: mockBears[0],
+                pickedWinner: 1
+            },
+            [9]: {
+                ...mockMatchupMap[9],
+                bear1: mockBears[0],
+                pickedWinner: 1
+            },
+            [11]: {
+                ...mockMatchupMap[11],
+                bear1: mockBears[0],
+                pickedWinner: 1
+            }
+        }
 
-    // });
+        const clearedBracket = clearDownstreamMatchups(filledBracket, 1);
+
+        expect(clearedBracket).toEqual(mockMatchupMap);
+    });
+
+    test('changing round 1 matchup clears downstream until alternate picked winner', () => {
+        const filledBracket = {
+            ...mockMatchupMap,
+            [5]: {
+                ...mockMatchupMap[5],
+                bear1: mockBears[0],
+                pickedWinner: 1
+            },
+            [9]: {
+                ...mockMatchupMap[9],
+                bear1: mockBears[0],
+                bear2: mockBears[9],
+                pickedWinner: 10
+            },
+            [11]: {
+                ...mockMatchupMap[11],
+                bear1: mockBears[9],
+                bear2: mockBears[4],
+                pickedWinner: 10
+            }
+        }
+
+        const expectedBracket = {
+            ...filledBracket, 
+            [5]: {
+                ...filledBracket[5],
+                bear1: undefined,
+                pickedWinner: undefined
+            },
+            [9]: {
+                ...filledBracket[9],
+                bear1: undefined
+            },
+        }
+
+        const clearedBracket = clearDownstreamMatchups(filledBracket, 1);
+
+        expect(clearedBracket).toEqual(expectedBracket);
+    });
 });

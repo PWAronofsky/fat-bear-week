@@ -92,67 +92,78 @@ export const mockMatchups: MatchupType[] = [
     id: 1,
     bear1: mockBears[0],
     bear2: mockBears[1],
-    nextMatchup: 5
+    nextMatchup: 5,
+    pickedWinner: undefined
   },
   {
     id: 2,
     bear1: mockBears[2],
     bear2: mockBears[3],
-    nextMatchup: 6
+    nextMatchup: 6,
+    pickedWinner: undefined
   },
   {
     id: 3,
     bear1: mockBears[4],
     bear2: mockBears[5],
-    nextMatchup: 7
+    nextMatchup: 7,
+    pickedWinner: undefined
   },
   {
     id: 4,
     bear1: mockBears[6],
     bear2: mockBears[7],
-    nextMatchup: 8
+    nextMatchup: 8,
+    pickedWinner: undefined
   },
   {
     id: 5,
     bear1: undefined,
     bear2: mockBears[8],
-    nextMatchup: 9
+    nextMatchup: 9,
+    pickedWinner: undefined
   },
   {
     id: 6,
     bear1: mockBears[9],
     bear2: undefined,
-    nextMatchup: 9
+    nextMatchup: 9,
+    pickedWinner: undefined
   },
   {
     id: 7,
     bear1: undefined,
     bear2: mockBears[10],
-    nextMatchup: 10
+    nextMatchup: 10,
+    pickedWinner: undefined
   },
   {
     id: 8,
     bear1: mockBears[11],
     bear2: undefined,
-    nextMatchup: 10
+    nextMatchup: 10,
+    pickedWinner: undefined
   },
   {
     id: 9,
     bear1: undefined,
     bear2: undefined,
-    nextMatchup: 11
+    nextMatchup: 11,
+    pickedWinner: undefined
   },
   {
     id: 10,
     bear1: undefined,
     bear2: undefined,
-    nextMatchup: 11
+    nextMatchup: 11,
+    pickedWinner: undefined
   },
   {
     id: 11,
     bear1: undefined,
     bear2: undefined,
-    nextMatchup: 12
+    nextMatchup: 12,
+    pickedWinner: undefined
   }
 ];
 
