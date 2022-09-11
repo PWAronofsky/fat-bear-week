@@ -3,7 +3,7 @@ import React from 'react';
 import '../App.css';
 import { mockBears, mockMatchupMap } from '../mockData';
 import { Matchup } from '../Matchup/Matchup';
-import {  MatchupMap } from '../types';
+import {  BearType, MatchupMap } from '../types';
 import '../App.css';
 
 export const getNextBearField = (matchupId: number) => {
@@ -24,7 +24,6 @@ export const clearDownstreamMatchups = (matchups: MatchupMap, matchupId: number)
 
   const shouldClearDownstream = checkShouldClearDownstream(nextMatchup.pickedWinner, nextMatchup[nextBearField]?.id);
 
-  console.log(`Matchup: ${matchupId}, NextBearField: ${nextBearField}, NextMatchup: ${nextMatchup.id}`)
   matchups = {
     ...matchups,
     [nextMatchup.id]: {
@@ -44,6 +43,7 @@ export const clearDownstreamMatchups = (matchups: MatchupMap, matchupId: number)
 //TODO: loading logic.
 export const Bracket = () => {
   const [matchupMap, setMatchupMap] = React.useState(mockMatchupMap);
+  const [champion, setChampion] = React.useState<BearType>();
 
   const pickWinner = (matchupId: number, bearId: number) => {
     let currentMatchup = matchupMap[matchupId];
@@ -51,6 +51,9 @@ export const Bracket = () => {
     // If picked winner is already the picked bear, do nothing
     if(currentMatchup.pickedWinner === bearId)
       return;
+
+    if(currentMatchup.pickedWinner === champion?.id)
+      setChampion(undefined);
 
     currentMatchup.pickedWinner = bearId;
 
@@ -85,7 +88,9 @@ export const Bracket = () => {
         ...newMatchups,
         [matchupId]: currentMatchup,
       };
-      // setChampionshipWinner(bearId);
+
+      const pickedChampion = mockBears.find(bear => bear.id === bearId);
+      setChampion(pickedChampion);
     }
 
     setMatchupMap(newMatchups);
@@ -107,6 +112,17 @@ export const Bracket = () => {
       </div>
       <div className="column center">
         <Matchup matchup={matchupMap[11]} pickWinner={pickWinner}/>
+        <div>
+          Champion
+        </div>
+        {champion && 
+          <div className="bear">
+            <img className="bear-image" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} />
+            <div className="champion-name" data-testid="champion-name">
+              {champion?.tagNumber} {champion?.name}
+            </div>
+          </div>
+        }
       </div>
       <div className="column right center">
         <Matchup matchup={matchupMap[10]} pickWinner={pickWinner}/>

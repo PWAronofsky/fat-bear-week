@@ -1,5 +1,17 @@
+import { render } from '@testing-library/react';
+import { Bracket } from './Bracket';
 import { mockMatchupMap, mockBears } from '../mockData';
 import { getNextBearField, checkShouldClearDownstream, clearDownstreamMatchups } from './Bracket';
+
+describe('Bracket', () => {
+    test('bracket renders champion title without champion bear displayed', () => {
+        const { queryByTestId, queryByText } = render(<Bracket/>);
+
+        expect(queryByText("Champion")).toBeTruthy();
+        expect(queryByTestId("champion-image")).toBeFalsy();
+        expect(queryByTestId("champion-name")).toBeFalsy();
+    });
+});
 
 describe('Bracket Functions', () => {
     test('getNextBearField returns correct next bear field based on current matchup', () => {
