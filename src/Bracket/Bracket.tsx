@@ -1,6 +1,5 @@
 
 import React from 'react';
-import '../App.css';
 import { mockBears, mockMatchupMap } from '../mockData';
 import { Matchup } from '../Matchup/Matchup';
 import {  BearType, MatchupMap } from '../types';
@@ -96,8 +95,12 @@ export const Bracket = () => {
     setMatchupMap(newMatchups);
   }
 
+  const submitBracket= () => {
+    console.log("submit called");
+  }
+
   return (
-    <div className="container">
+    <div className="page-container">
       <div className="column">
         <Matchup matchup={matchupMap[1]} pickWinner={pickWinner}/>
         <Matchup matchup={matchupMap[2]} pickWinner={pickWinner}/>
@@ -116,12 +119,15 @@ export const Bracket = () => {
           Champion
         </div>
         {champion && 
+        <>
           <div className="bear">
             <img className="bear-image" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} />
             <div className="champion-name" data-testid="champion-name">
               {champion?.tagNumber} {champion?.name}
             </div>
           </div>
+          <button onClick={submitBracket}>Submit</button>
+        </>
         }
       </div>
       <div className="column right center">
@@ -137,6 +143,5 @@ export const Bracket = () => {
         <Matchup matchup={matchupMap[4]} pickWinner={pickWinner}/>
       </div>
     </div>
-    
   );
 }

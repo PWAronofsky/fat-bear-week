@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Bracket } from './Bracket/Bracket';
+import { Login } from './Login/Login';
+import './index.css';
+
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -10,7 +12,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Bracket />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/bracket" element={<Bracket />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
