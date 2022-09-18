@@ -6,18 +6,21 @@ import { Login } from './Login/Login';
 import './index.css';
 
 import reportWebVitals from './reportWebVitals';
+import { UserContextProvider } from './contexts/userContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/bracket" element={<Bracket />} />
-      </Routes>
-    </BrowserRouter>
+    <UserContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/bracket" element={<Bracket />} />
+        </Routes>
+      </BrowserRouter>
+    </UserContextProvider>
   </React.StrictMode>
 );
 

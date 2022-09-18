@@ -18,4 +18,9 @@ export interface MatchupType {
 export interface MatchupMap {
   [key: string]: MatchupType
 }
+
+export interface User {
+  username: string,
+  token?: string
+}
   
