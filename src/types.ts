@@ -21,6 +21,6 @@ export interface MatchupMap {
 
 export interface User {
   username: string,
-  token?: string
+  token: string
 }
   

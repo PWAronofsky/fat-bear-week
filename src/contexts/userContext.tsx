@@ -13,9 +13,26 @@ const UserContext = React.createContext<UserContextType>({
 
 export const UserContextProvider = ({ children }: any) => {
   const [user, setUser] = React.useState<User>();
+  React.useEffect(() => {
+    console.log(user);
+    if(!user){
+      const username = window.localStorage.getItem("USERNAME");
+      const token = window.localStorage.getItem("TOKEN");
+      if(!username || !token) {
+        return;
+      }
+
+      updateUser({
+        username: username,
+        token: token
+      });
+    }
+  }, [user]);
+
   const updateUser = (user: User) => {
+    window.localStorage.setItem("USERNAME", user.username);
+    window.localStorage.setItem("TOKEN", user.token);
     setUser(user);
-    console.log(`User set! name: ${user.username} token: ${user.token}`);
   };
 
   const contextValues = { user, updateUser };

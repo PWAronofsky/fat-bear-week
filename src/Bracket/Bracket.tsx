@@ -1,9 +1,11 @@
 
 import React from 'react';
+import Axios from 'axios'
 import { mockBears, mockMatchupMap } from '../mockData';
 import { Matchup } from '../Matchup/Matchup';
 import {  BearType, MatchupMap } from '../types';
 import '../App.css';
+import { useUserContext } from '../contexts/userContext';
 
 export const getNextBearField = (matchupId: number) => {
   return matchupId % 2 === 1 ? 'bear1' : 'bear2';
@@ -43,6 +45,13 @@ export const clearDownstreamMatchups = (matchups: MatchupMap, matchupId: number)
 export const Bracket = () => {
   const [matchupMap, setMatchupMap] = React.useState(mockMatchupMap);
   const [champion, setChampion] = React.useState<BearType>();
+  const { user } = useUserContext();
+
+  React.useEffect(() => {
+    if(user) {
+      getBracket();
+    }
+  }, [user]);
 
   const pickWinner = (matchupId: number, bearId: number) => {
     let currentMatchup = matchupMap[matchupId];
@@ -95,8 +104,31 @@ export const Bracket = () => {
     setMatchupMap(newMatchups);
   }
 
-  const submitBracket= () => {
-    console.log("submit called");
+  const submitBracket = async () => {
+    try {
+      await Axios.post("http://localhost:8080/bracket/update-create", { token: user?.token, bracketMap: matchupMap}).then((response) => {
+          console.log("bracket created")
+        });
+    } catch(e) {
+      console.log("oh nooo bracket saving failed.")
+    }
+  }
+
+  const getBracket = async () => {
+    try {
+      await Axios.post("http://localhost:8080/bracket/get", {token: user?.token }).then((response) => {
+        const bracketMap = response?.data?.bracketMap;
+        if(bracketMap) {
+          setMatchupMap(bracketMap);
+          if(bracketMap[11] && bracketMap[11].pickedWinner) {
+            const pickedChampion = mockBears.find(bear => bear.id === bracketMap[11].pickedWinner);
+            setChampion(pickedChampion);
+          }
+        }
+      })
+    } catch {
+      console.log("oh nooo bracket fetching failed.")
+    }
   }
 
   return (
