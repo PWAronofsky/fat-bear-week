@@ -106,7 +106,7 @@ export const Bracket = () => {
 
   const submitBracket = async () => {
     try {
-      await Axios.post("http://localhost:8080/bracket/update-create", { token: user?.token, bracketMap: matchupMap}).then((response) => {
+      await Axios.post("/bracket/update-create", { token: user?.token, bracketMap: matchupMap}).then((response) => {
           console.log("bracket created")
         });
     } catch(e) {
@@ -116,7 +116,7 @@ export const Bracket = () => {
 
   const getBracket = async () => {
     try {
-      await Axios.post("http://localhost:8080/bracket/get", {token: user?.token }).then((response) => {
+      await Axios.post("/bracket/get", {token: user?.token }).then((response) => {
         const bracketMap = response?.data?.bracketMap;
         if(bracketMap) {
           setMatchupMap(bracketMap);

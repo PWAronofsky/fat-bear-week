@@ -17,7 +17,7 @@ export const Login = () => {
     e.preventDefault()
     try {
       if(showSignup) {
-        await Axios.post("http://localhost:8080/register", { username, email, password, leagueId }).then((response) => {
+        await Axios.post("/register", { username, email, password, leagueId }).then((response) => {
           updateUser({
             username: response.data.username,
             token: response.data.token
@@ -27,7 +27,7 @@ export const Login = () => {
         });
         console.log("User was successfully created.");
       } else {
-        await Axios.post("http://localhost:8080/login", { username, password }).then((response) => {
+        await Axios.post("/login", { username, password }).then((response) => {
           updateUser({
             username: response.data.username,
             token: response.data.token

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import Axios from 'axios';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Bracket } from './Bracket/Bracket';
 import { Login } from './Login/Login';
@@ -7,6 +8,8 @@ import './index.css';
 
 import reportWebVitals from './reportWebVitals';
 import { UserContextProvider } from './contexts/userContext';
+
+Axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

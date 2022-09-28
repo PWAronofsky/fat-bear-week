@@ -8,6 +8,11 @@
       "type": "image/x-icon"
     },
     {
+      "src": "bear-2-16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
       "src": "bear-2-128.png",
       "type": "image/png",
       "sizes": "128x128"
