@@ -9,15 +9,17 @@ export const Main = () => {
   React.useEffect(() => {
     Axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
   }, []);
-  
+
   return (
-    <UserContextProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/bracket" element={<Bracket />} />
-        </Routes>
-      </BrowserRouter>
-    </UserContextProvider>
+    <React.StrictMode>
+      <UserContextProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/bracket" element={<Bracket />} />
+          </Routes>
+        </BrowserRouter>
+      </UserContextProvider>
+    </React.StrictMode>
   )
 }
