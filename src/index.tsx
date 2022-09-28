@@ -1,29 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Axios from 'axios';
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { Bracket } from './Bracket/Bracket';
-import { Login } from './Login/Login';
+import { Main } from './Main/Main';
+
 import './index.css';
 
 import reportWebVitals from './reportWebVitals';
-import { UserContextProvider } from './contexts/userContext';
-
-Axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <UserContextProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/bracket" element={<Bracket />} />
-        </Routes>
-      </BrowserRouter>
-    </UserContextProvider>
+    <Main />
   </React.StrictMode>
 );
 

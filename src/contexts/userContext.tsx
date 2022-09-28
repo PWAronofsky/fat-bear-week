@@ -14,7 +14,6 @@ const UserContext = React.createContext<UserContextType>({
 export const UserContextProvider = ({ children }: any) => {
   const [user, setUser] = React.useState<User>();
   React.useEffect(() => {
-    console.log(user);
     if(!user){
       const username = window.localStorage.getItem("USERNAME");
       const token = window.localStorage.getItem("TOKEN");
