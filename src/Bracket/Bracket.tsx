@@ -1,6 +1,7 @@
 
 import React from 'react';
-import Axios from 'axios'
+import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { mockBears, mockMatchupMap } from '../mockData';
 import { Matchup } from '../Matchup/Matchup';
 import {  BearType, MatchupMap } from '../types';
@@ -45,6 +46,7 @@ export const clearDownstreamMatchups = (matchups: MatchupMap, matchupId: number)
 export const Bracket = () => {
   const [matchupMap, setMatchupMap] = React.useState(mockMatchupMap);
   const [champion, setChampion] = React.useState<BearType>();
+  const navigate = useNavigate();
   const { user } = useUserContext();
 
   React.useEffect(() => {
@@ -128,6 +130,7 @@ export const Bracket = () => {
       })
     } catch {
       console.log("oh nooo bracket fetching failed.")
+      navigate("/");
     }
   }
 

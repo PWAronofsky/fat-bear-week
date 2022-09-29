@@ -1,7 +1,7 @@
-import React from 'react'
-import Axios from 'axios'
-import { useNavigate } from 'react-router-dom'
-import { useUserContext } from '../contexts/userContext'
+import React from 'react';
+import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../contexts/userContext';
 
 export const Login = () => {
   const [username, setUsername] = React.useState('');
