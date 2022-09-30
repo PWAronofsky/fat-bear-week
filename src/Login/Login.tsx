@@ -1,7 +1,8 @@
 import React from 'react';
-import Axios from 'axios';
+import Axios, { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../contexts/userContext';
+import { stringify } from 'querystring';
 
 export const Login = () => {
   const [username, setUsername] = React.useState('');
@@ -10,6 +11,7 @@ export const Login = () => {
   const [leagueId, setLeagueId] = React.useState('');
   const [showSignup, setShowSignup] = React.useState(true);
   const [fetchingData, setFetchingData] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState('');
 
   const navigate = useNavigate();
   const { updateUser } = useUserContext();
@@ -39,9 +41,9 @@ export const Login = () => {
         });
         console.log("User was successfully logged in.");
       }
-    } catch (e) {
+    } catch (e: any) {
       setFetchingData(false);
-      console.log(e)
+      setErrorMessage(e?.response?.data?.join(" "));
     }
   }
 
@@ -55,7 +57,8 @@ export const Login = () => {
       <div className="row align-items-center">
         <div className="col-lg-7 py-3 py-md-5">
           <h1 className="display-3">Fat Bear Week!</h1>
-          <p className="lead text-muted">It's that time again, mama bears and brave cubs! The showdown of the year! Fill out your brackets, and may the chunkiest bear win!</p>
+          <p className="lead text-dark">It's that time again, mama bears and brave cubs! The showdown of the year! Fill out your brackets, and may the chunkiest bear win!</p>
+          {errorMessage!! && (<p className="lead text-dark">Error: {errorMessage}</p>)}
           <button onClick={toggleShowSignup} className="btn btn-md btn-success" disabled={fetchingData}>
             {showSignup ? "Log in" : "Create Account"}
           </button>
@@ -63,28 +66,28 @@ export const Login = () => {
         <div className="col-lg-5 pl-lg-5 pb-3 py-lg-5">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="username-register" className="text-muted mb-1">
+              <label htmlFor="username-register" className="text-secondary mb-1">
                 <small>Username</small>
               </label>
               <input onChange={e => setUsername(e.target.value)} id="username-register" name="username" className="form-control" type="text" placeholder={showSignup ? "Pick a username" : "Username"} autoComplete="off" />
             </div>
             {showSignup && (
               <div className="form-group">
-                <label htmlFor="email-register" className="text-muted mb-1">
+                <label htmlFor="email-register" className="text-secondary mb-1">
                   <small>Email</small>
                 </label>
                 <input onChange={e => setEmail(e.target.value)} id="email-register" name="email" className="form-control" type="text" placeholder="you@example.com" autoComplete="off" />
               </div>
             )}
             <div className="form-group">
-              <label htmlFor="password-register" className="text-muted mb-1">
+              <label htmlFor="password-register" className="text-secondary mb-1">
                 <small>Password</small>
               </label>
               <input onChange={e => setPassword(e.target.value)} id="password-register" name="password" className="form-control" type="password" placeholder="Create a password" />
             </div>
             {showSignup && (
               <div className="form-group">
-                <label htmlFor="leagueid-register" className="text-muted mb-1">
+                <label htmlFor="leagueid-register" className="text-secondary mb-1">
                   <small>League Id</small>
                 </label>
                 <input onChange={e => setLeagueId(e.target.value)} id="leagueid-register" name="leagueId" className="form-control" type="text" placeholder="Enter your league id" />
