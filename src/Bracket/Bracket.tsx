@@ -47,6 +47,7 @@ export const clearDownstreamMatchups = (matchups: MatchupMap, matchupId: number)
 export const Bracket = () => {
   const [matchupMap, setMatchupMap] = React.useState(mockMatchupMap);
   const [champion, setChampion] = React.useState<BearType>();
+  const [showSuccess, setShowSuccess] = React.useState(false);
   const navigate = useNavigate();
   const { user } = useUserContext();
 
@@ -140,7 +141,8 @@ export const Bracket = () => {
   const submitBracket = async () => {
     try {
       await Axios.post("/bracket/update-create", { token: user?.token, bracketMap: matchupMap}).then((response) => {
-          console.log("bracket created")
+          setShowSuccess(true);
+          console.log("bracket saved")
         });
     } catch(e) {
       console.log("oh nooo bracket saving failed.")
@@ -175,6 +177,9 @@ export const Bracket = () => {
             </div>
           </div>
           <button onClick={submitBracket}>Submit</button>
+          {showSuccess && 
+            <div>Success!</div>
+          }
         </>
         }
       </div>

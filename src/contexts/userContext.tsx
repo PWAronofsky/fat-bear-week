@@ -30,7 +30,7 @@ export const UserContextProvider = ({ children }: any) => {
       }
 
       const checkToken = async () => {
-        await Axios.post(`${process.env.REACT_APP_LOCAL_API}/checktoken`, { token: token }).then((response) => {
+        await Axios.post(`${process.env.REACT_APP_API_BASE_URL}/checktoken`, { token: token }).then((response) => {
           if(isCancelled) {
             return;
           }
