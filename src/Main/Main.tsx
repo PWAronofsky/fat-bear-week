@@ -1,9 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Bracket } from '../Bracket/Bracket';
 import { UserContextProvider } from '../contexts/userContext';
-import { Login } from '../Login/Login';
+import { Router } from '../Router/Router';
 
 export const Main = () => {
   React.useEffect(() => {
@@ -13,12 +11,7 @@ export const Main = () => {
   return (
     <React.StrictMode>
       <UserContextProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/bracket" element={<Bracket />} />
-          </Routes>
-        </BrowserRouter>
+        <Router />
       </UserContextProvider>
     </React.StrictMode>
   )

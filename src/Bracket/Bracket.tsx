@@ -2,11 +2,12 @@
 import React from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+
 import { mockBears, mockMatchupMap } from '../mockData';
 import { Matchup } from '../Matchup/Matchup';
-import {  BearType, MatchupMap } from '../types';
-import '../App.css';
+import { BearType, MatchupMap } from '../types';
 import { useUserContext } from '../contexts/userContext';
+import '../App.css';
 
 export const getNextBearField = (matchupId: number) => {
   return matchupId % 2 === 1 ? 'bear1' : 'bear2';
@@ -67,13 +68,11 @@ export const Bracket = () => {
               setChampion(pickedChampion);
             }
           } else {
-            console.log("oh nooo bracket fetching failed.")
-            navigate("/");
+            console.log("oh nooo bracket not found.")
           }
         })
       } catch {
         console.log("oh nooo bracket fetching failed.")
-        navigate("/");
       }
     }
 
