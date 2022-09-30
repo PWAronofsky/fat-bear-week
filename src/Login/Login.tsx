@@ -1,8 +1,7 @@
 import React from 'react';
-import Axios, { AxiosError } from 'axios';
+import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../contexts/userContext';
-import { stringify } from 'querystring';
 
 export const Login = () => {
   const [username, setUsername] = React.useState('');
