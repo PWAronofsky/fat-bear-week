@@ -24,7 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "webpack serve --config ./webpack.config.js --mode development"
+    "dev": "webpack serve --config ./webpack.config.js --mode development --port 3000 --hot"
   },
   "eslintConfig": {
     "extends": [

@@ -2,7 +2,7 @@ const currentTask = process.env.npm_lifecycle_event
 const path = require('path');
 
 const config = {
-  entry: './src/index.js',
+  entry: path.resolve(__dirname, './src/index.js'),
   module: {
     rules: [
       {
@@ -31,8 +31,8 @@ const config = {
   },
   output: {
     publicPath: "/",
-    path: path.resolve(__dirname, "./dist"),
-    filename: "bundled.js",
+    path: path.resolve(__dirname, './public'),
+    filename: "bundle.js",
   },
   devServer: {
     static: path.resolve(__dirname, './public'),

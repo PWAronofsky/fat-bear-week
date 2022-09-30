@@ -50,10 +50,42 @@ export const Bracket = () => {
   const { user } = useUserContext();
 
   React.useEffect(() => {
+    let isCancelled = false;
+
+    const getBracket = async () => {
+      try {
+        await Axios.post("/bracket/get", {token: user?.token }).then((response) => {
+          if(isCancelled) {
+            return;
+          }
+
+          const bracketMap = response?.data?.bracketMap;
+          if(bracketMap) {
+            setMatchupMap(bracketMap);
+            if(bracketMap[11] && bracketMap[11].pickedWinner) {
+              const pickedChampion = mockBears.find(bear => bear.id === bracketMap[11].pickedWinner);
+              setChampion(pickedChampion);
+            }
+          } else {
+            console.log("oh nooo bracket fetching failed.")
+            navigate("/");
+          }
+        })
+      } catch {
+        console.log("oh nooo bracket fetching failed.")
+        navigate("/");
+      }
+    }
+
     if(user) {
       getBracket();
     }
-  }, [user]);
+
+    return () => {
+      isCancelled = true;
+    }
+
+  }, [navigate, user]);
 
   const pickWinner = (matchupId: number, bearId: number) => {
     let currentMatchup = matchupMap[matchupId];
@@ -116,24 +148,6 @@ export const Bracket = () => {
     }
   }
 
-  const getBracket = async () => {
-    try {
-      await Axios.post("/bracket/get", {token: user?.token }).then((response) => {
-        const bracketMap = response?.data?.bracketMap;
-        if(bracketMap) {
-          setMatchupMap(bracketMap);
-          if(bracketMap[11] && bracketMap[11].pickedWinner) {
-            const pickedChampion = mockBears.find(bear => bear.id === bracketMap[11].pickedWinner);
-            setChampion(pickedChampion);
-          }
-        }
-      })
-    } catch {
-      console.log("oh nooo bracket fetching failed.")
-      navigate("/");
-    }
-  }
-
   return (
     <div className="page-container">
       <div className="column">
@@ -156,7 +170,7 @@ export const Bracket = () => {
         {champion && 
         <>
           <div className="bear">
-            <img className="bear-image" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} />
+            <img className="bear-image" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} alt="champion profile"/>
             <div className="champion-name" data-testid="champion-name">
               {champion?.tagNumber} {champion?.name}
             </div>
