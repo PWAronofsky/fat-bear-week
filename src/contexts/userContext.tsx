@@ -1,4 +1,5 @@
 import React from 'react';
+import Axios from 'axios';
 import { User } from '../types';
 
 interface UserContextType {
@@ -19,17 +20,34 @@ export const UserContextProvider = ({ children }: any) => {
 
   React.useEffect(() => {
     if(!user){
+      let isCancelled = false;
       const username = window.localStorage.getItem("USERNAME");
       const token = window.localStorage.getItem("TOKEN");
+
       if(!username || !token) {
         setIsLoggedIn(false);
         return;
       }
 
-      updateUser({
-        username: username,
-        token: token
-      });
+      const checkToken = async () => {
+        await Axios.post(`${process.env.REACT_APP_LOCAL_API}/checktoken`, { token: token }).then((response) => {
+          if(isCancelled) {
+            return;
+          }
+          if(!response.data){
+            setIsLoggedIn(false);
+            updateUser();
+          } else {
+            setIsLoggedIn(true);
+            updateUser({
+              username: username,
+              token: token
+            });
+          }
+        });
+      }
+
+      checkToken();
     }
   }, [user]);
 

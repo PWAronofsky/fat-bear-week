@@ -9,12 +9,14 @@ export const Login = () => {
   const [password, setPassword] = React.useState('');
   const [leagueId, setLeagueId] = React.useState('');
   const [showSignup, setShowSignup] = React.useState(true);
+  const [fetchingData, setFetchingData] = React.useState(false);
 
   const navigate = useNavigate();
   const { updateUser } = useUserContext();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setFetchingData(true);
     try {
       if(showSignup) {
         await Axios.post("/register", { username, email, password, leagueId }).then((response) => {
@@ -38,6 +40,7 @@ export const Login = () => {
         console.log("User was successfully logged in.");
       }
     } catch (e) {
+      setFetchingData(false);
       console.log(e)
     }
   }
@@ -53,7 +56,7 @@ export const Login = () => {
         <div className="col-lg-7 py-3 py-md-5">
           <h1 className="display-3">Fat Bear Week!</h1>
           <p className="lead text-muted">It's that time again, mama bears and brave cubs! The showdown of the year! Fill out your brackets, and may the chunkiest bear win!</p>
-          <button onClick={toggleShowSignup} className="btn btn-md btn-success">
+          <button onClick={toggleShowSignup} className="btn btn-md btn-success" disabled={fetchingData}>
             {showSignup ? "Log in" : "Create Account"}
           </button>
         </div>
@@ -87,7 +90,7 @@ export const Login = () => {
                 <input onChange={e => setLeagueId(e.target.value)} id="leagueid-register" name="leagueId" className="form-control" type="text" placeholder="Enter your league id" />
               </div>
             )}
-            <button type="submit" className="py-3 mt-4 btn btn-lg btn-success btn-block">
+            <button type="submit" className="py-3 mt-4 btn btn-lg btn-success btn-block" disabled={fetchingData}>
               {showSignup ? "Sign Up" : "Log In" }
             </button>
           </form>
