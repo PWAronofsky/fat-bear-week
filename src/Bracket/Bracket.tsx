@@ -55,7 +55,7 @@ export const Bracket = () => {
   const bearsRef = React.useRef(mockBears)
   React.useEffect(() => {
     bearsRef.current.forEach((bear) => {
-      const img = new Image;
+      const img = new Image();
       img.src = bear.afterImgSrc || '';
     });
   }, []);
