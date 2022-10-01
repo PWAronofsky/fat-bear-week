@@ -58,7 +58,7 @@ export const Bracket = () => {
       const img = new Image;
       img.src = bear.afterImgSrc || '';
     });
-  }, [bearsRef.current]);
+  }, []);
 
   React.useEffect(() => {
     let isCancelled = false;
