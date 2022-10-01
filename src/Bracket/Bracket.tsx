@@ -51,6 +51,15 @@ export const Bracket = () => {
   const navigate = useNavigate();
   const { user } = useUserContext();
 
+  // Preload images
+  const bearsRef = React.useRef(mockBears)
+  React.useEffect(() => {
+    bearsRef.current.forEach((bear) => {
+      const img = new Image;
+      img.src = bear.afterImgSrc || '';
+    });
+  }, [bearsRef.current]);
+
   React.useEffect(() => {
     let isCancelled = false;
 
@@ -93,6 +102,8 @@ export const Bracket = () => {
     // If picked winner is already the picked bear, do nothing
     if(currentMatchup.pickedWinner === bearId)
       return;
+
+    setShowSuccess(false);
 
     if(currentMatchup.pickedWinner === champion?.id)
       setChampion(undefined);
@@ -165,23 +176,23 @@ export const Bracket = () => {
       </div>
       <div className="column center">
         <Matchup matchup={matchupMap[11]} pickWinner={pickWinner}/>
-        <div>
-          Champion
-        </div>
-        {champion && 
-        <>
-          <div className="bear">
-            <img className="bear-image" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} alt="champion profile"/>
-            <div className="champion-name" data-testid="champion-name">
-              {champion?.tagNumber} {champion?.name}
+        {champion && (
+          <div className="champion-container">
+            <div className="column center">
+              <div>
+                Champion
+              </div>
+              <img className="bear-image" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} alt="champion profile"/>
+              <div className="champion-name" data-testid="champion-name">
+                {champion?.tagNumber} {champion?.name}
+              </div>
+              <button className="btn btn-secondary btn-sm" onClick={submitBracket}>Submit</button>
+              {showSuccess && 
+                <div>Success!</div>
+              }
             </div>
           </div>
-          <button onClick={submitBracket}>Submit</button>
-          {showSuccess && 
-            <div>Success!</div>
-          }
-        </>
-        }
+        )}
       </div>
       <div className="column right center">
         <Matchup matchup={matchupMap[10]} pickWinner={pickWinner}/>
