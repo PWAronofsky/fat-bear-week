@@ -20,6 +20,18 @@ export const UserContextProvider = ({ children }: any) => {
   const [user, setUser] = React.useState<User>();
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
 
+  const updateUser = (user?: User) => {
+    if(!user) {
+      logout();
+      return;
+    }
+
+    window.localStorage.setItem("USERNAME", user.username);
+    window.localStorage.setItem("TOKEN", user.token);
+    setUser(user);
+    setIsLoggedIn(true);
+  };
+
   React.useEffect(() => {
     if(!user){
       let isCancelled = false;
@@ -51,19 +63,7 @@ export const UserContextProvider = ({ children }: any) => {
 
       checkToken();
     }
-  }, [user]);
-
-  const updateUser = (user?: User) => {
-    if(!user) {
-      logout();
-      return;
-    }
-
-    window.localStorage.setItem("USERNAME", user.username);
-    window.localStorage.setItem("TOKEN", user.token);
-    setUser(user);
-    setIsLoggedIn(true);
-  };
+  }, [user, updateUser]);
 
   const logout = () => {
     setUser(undefined);
