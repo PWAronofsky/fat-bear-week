@@ -20,7 +20,14 @@ export const UserContextProvider = ({ children }: any) => {
   const [user, setUser] = React.useState<User>();
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
 
-  const updateUser = (user?: User) => {
+  const logout = React.useCallback(() => {
+    setUser(undefined);
+    setIsLoggedIn(false);
+    window.localStorage.removeItem("USERNAME");
+    window.localStorage.removeItem("TOKEN");
+  }, []);
+
+  const updateUser = React.useCallback((user?: User) => {
     if(!user) {
       logout();
       return;
@@ -30,7 +37,7 @@ export const UserContextProvider = ({ children }: any) => {
     window.localStorage.setItem("TOKEN", user.token);
     setUser(user);
     setIsLoggedIn(true);
-  };
+  }, [logout]);
 
   React.useEffect(() => {
     if(!user){
@@ -64,13 +71,6 @@ export const UserContextProvider = ({ children }: any) => {
       checkToken();
     }
   }, [user, updateUser]);
-
-  const logout = () => {
-    setUser(undefined);
-    setIsLoggedIn(false);
-    window.localStorage.removeItem("USERNAME");
-    window.localStorage.removeItem("TOKEN");
-  }
 
   const contextValues = { user, updateUser, isLoggedIn, logout };
 
