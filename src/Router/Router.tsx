@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { About } from '../About/About';
 import { Bracket } from '../Bracket/Bracket';
 import { Header } from '../Header/Header';
 import { Login } from '../Login/Login';
+import { Standings } from '../Standings/Standings';
 import { useUserContext } from '../contexts/userContext';
 
 export const Router = () => {
@@ -10,15 +12,21 @@ export const Router = () => {
       <Header />
       <Routes>
         <Route path="/" element={
-          // <LoggedInRedirect>
+          <LoggedInRedirect>
             <Login />
-          // </LoggedInRedirect>
+          </LoggedInRedirect>
         } />
         <Route path="/bracket" element={
           <ProtectedRoute>
             <Bracket />
           </ProtectedRoute>
         } />
+        <Route path="/standings" element={
+          <ProtectedRoute>
+            <Standings />
+          </ProtectedRoute>
+        } />
+        <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
   )

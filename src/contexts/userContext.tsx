@@ -5,13 +5,15 @@ import { User } from '../types';
 interface UserContextType {
   user?: User,
   updateUser: (user?: User) => void,
-  isLoggedIn: boolean
+  isLoggedIn: boolean,
+  logout: () => void
 }
 
 const UserContext = React.createContext<UserContextType>({
   user: undefined,
   updateUser: function () {},
-  isLoggedIn: true
+  isLoggedIn: true,
+  logout: function () {}
 });
 
 export const UserContextProvider = ({ children }: any) => {
@@ -53,8 +55,7 @@ export const UserContextProvider = ({ children }: any) => {
 
   const updateUser = (user?: User) => {
     if(!user) {
-      setUser(undefined);
-      setIsLoggedIn(false);
+      logout();
       return;
     }
 
@@ -64,7 +65,14 @@ export const UserContextProvider = ({ children }: any) => {
     setIsLoggedIn(true);
   };
 
-  const contextValues = { user, updateUser, isLoggedIn };
+  const logout = () => {
+    setUser(undefined);
+    setIsLoggedIn(false);
+    window.localStorage.removeItem("USERNAME");
+    window.localStorage.removeItem("TOKEN");
+  }
+
+  const contextValues = { user, updateUser, isLoggedIn, logout };
 
   return (
     <UserContext.Provider value={contextValues}>

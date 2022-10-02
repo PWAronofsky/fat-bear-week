@@ -10,7 +10,9 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <Main />
+  <div className="main-background">
+    <Main />
+  </div>
 );
 
 // If you want to start measuring performance in your app, pass a function
