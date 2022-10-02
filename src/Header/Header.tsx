@@ -25,6 +25,7 @@ export const Header = () => {
 
           setUsername('');
           setPassword('');
+          setFetchingData(false);
 
           navigate("/bracket");
         }
@@ -83,7 +84,7 @@ export const Header = () => {
 
           {isLoggedIn && (
             <div className="col-md-auto">
-              <button onClick={logout} className="btn btn-success btn-sm" disabled={false}>Log Out</button>
+              <button onClick={logout} className="btn btn-success btn-sm">Log Out</button>
             </div>
           )}
         </div>
