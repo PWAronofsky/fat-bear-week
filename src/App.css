@@ -56,6 +56,11 @@
   justify-content: space-between;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
 .right {
   align-items: flex-end;
 }
@@ -66,8 +71,8 @@
 }
 
 .round-two {
-  padding-top: 15vmin;
-  padding-bottom: 15vmin;
+  padding-top: 10vmin;
+  padding-bottom: 10vmin;
 }
 
 .matchup {
@@ -98,5 +103,30 @@
 
 .champion-container {
   position: absolute;
-  top: 5px
+  top: 64px
+}
+
+.header-bar {
+  background-color: #158589;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.header-section {
+  display: flex;
+  align-items: center;
+}
+
+.header-icon {
+  margin-left: 10px;
+  margin-right: 10px;
 }

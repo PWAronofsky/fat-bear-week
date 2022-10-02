@@ -52,13 +52,13 @@ export const Bracket = () => {
   const { user } = useUserContext();
 
   // Preload images
-  const bearsRef = React.useRef(mockBears)
-  React.useEffect(() => {
-    bearsRef.current.forEach((bear) => {
-      const img = new Image();
-      img.src = bear.beforeImgSrc || '';
-    });
-  }, []);
+  // const bearsRef = React.useRef(mockBears)
+  // React.useEffect(() => {
+  //   bearsRef.current.forEach((bear) => {
+  //     const img = new Image();
+  //     img.src = bear.beforeImgSrc || '';
+  //   });
+  // }, []);
 
   React.useEffect(() => {
     let isCancelled = false;
