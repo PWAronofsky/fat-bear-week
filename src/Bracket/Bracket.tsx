@@ -56,7 +56,7 @@ export const Bracket = () => {
   React.useEffect(() => {
     bearsRef.current.forEach((bear) => {
       const img = new Image();
-      img.src = bear.afterImgSrc || '';
+      img.src = bear.beforeImgSrc || '';
     });
   }, []);
 
@@ -182,11 +182,11 @@ export const Bracket = () => {
               <div>
                 Champion
               </div>
-              <img className="bear-image" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} alt="champion profile"/>
+              <img className="bear-image shadowed" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} alt="champion profile"/>
               <div className="champion-name" data-testid="champion-name">
                 {champion?.tagNumber} {champion?.name}
               </div>
-              <button className="btn btn-secondary btn-sm" onClick={submitBracket}>Submit</button>
+              <button className="btn btn-secondary btn-sm shadowed" onClick={submitBracket}>Submit</button>
               {showSuccess && 
                 <div>Success!</div>
               }
