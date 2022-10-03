@@ -40,7 +40,7 @@ export const UserContextProvider = ({ children }: any) => {
   }, [logout]);
 
   React.useEffect(() => {
-    if(!user){
+    if(!user?.username){
       let isCancelled = false;
       const username = window.localStorage.getItem("USERNAME");
       const token = window.localStorage.getItem("TOKEN");
@@ -70,7 +70,7 @@ export const UserContextProvider = ({ children }: any) => {
 
       checkToken();
     }
-  }, [user, updateUser]);
+  }, [user?.username, updateUser]);
 
   const contextValues = { user, updateUser, isLoggedIn, logout };
 

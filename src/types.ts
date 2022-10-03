@@ -23,4 +23,9 @@ export interface User {
   username: string,
   token: string
 }
+
+export interface UserStanding {
+  username: string,
+  total: number
+}
   

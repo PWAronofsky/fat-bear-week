@@ -176,13 +176,13 @@ export const Bracket = () => {
       </div>
       <div className="column center">
         <Matchup matchup={matchupMap[11]} pickWinner={pickWinner}/>
-        {champion && (
+        {(champion || user?.username === "admin") && (
           <div className="champion-container">
             <div className="column center">
               <div>
                 Champion
               </div>
-              <img className="bear-image shadowed" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} alt="champion profile"/>
+              {champion && (<img className="bear-image shadowed" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} alt="champion profile"/>)}
               <div className="champion-name" data-testid="champion-name">
                 {champion?.tagNumber} {champion?.name}
               </div>
