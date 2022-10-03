@@ -22,7 +22,7 @@ export const Standings = () => {
       })
     }
 
-    if(user) {
+    if(user?.token) {
       getStandings();
     }
   }, [user?.token]);
