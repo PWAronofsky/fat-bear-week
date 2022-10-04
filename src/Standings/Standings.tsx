@@ -38,7 +38,7 @@ export const Standings = () => {
           <ol>
             {standings.map((userStanding) => {
               return (
-                <li className="lead text-dark">{userStanding.username}   {userStanding.total}</li>
+                <li key={userStanding.username} className="lead text-dark">{userStanding.username}   {userStanding.total}</li>
               )
             })}
           </ol>
