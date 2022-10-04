@@ -3,38 +3,38 @@ import { BearType, MatchupType, MatchupMap } from './types';
 export const mockBears: BearType[] = [
   {
     id: 1,
-    tagNumber: 435,
-    name: 'Holly',
-    beforeImgSrc: '435-before.png',
-    afterImgSrc: '435-after.png'
+    tagNumber: 335,
+    name: '',
+    beforeImgSrc: '335-before.png',
+    afterImgSrc: '335-after.png'
   },
   {
     id: 2,
-    tagNumber: 128,
-    name: 'Grazer',
-    beforeImgSrc: '128-before.png',
-    afterImgSrc: '128-after.png'
+    tagNumber: 164,
+    name: '',
+    beforeImgSrc: '164-before.png',
+    afterImgSrc: '164-after.png'
   },
   {
     id: 3,
-    tagNumber: 132,
-    name: 'Cub',
-    beforeImgSrc: '132-before.png',
-    afterImgSrc: '132-after.png'
+    tagNumber: 747,
+    name: '',
+    beforeImgSrc: '747-before.png',
+    afterImgSrc: '747-after.png'
   },
   {
     id: 4,
-    tagNumber: 32,
-    name: 'Chunk',
-    beforeImgSrc: '32-before.png',
-    afterImgSrc: '32-after.png'
+    tagNumber: 856,
+    name: '',
+    beforeImgSrc: '856-before.png',
+    afterImgSrc: '856-after.png'
   },
   {
     id: 5,
-    tagNumber: 634,
-    name: 'Popeye',
-    beforeImgSrc: '634-before.png',
-    afterImgSrc: '634-after.png'
+    tagNumber: 854,
+    name: 'Divot',
+    beforeImgSrc: '854-before.png',
+    afterImgSrc: '854-after.png'
   },
   {
     id: 6,
@@ -45,38 +45,38 @@ export const mockBears: BearType[] = [
   },
   {
     id: 7,
-    tagNumber: 812,
+    tagNumber: 901,
     name: '',
-    beforeImgSrc: '812-before.png',
-    afterImgSrc: '812-after.png'
+    beforeImgSrc: '901-before.png',
+    afterImgSrc: '901-after.png'
   },
   {
     id: 8,
-    tagNumber: 131,
-    name: '',
-    beforeImgSrc: '131-before.png',
-    afterImgSrc: '131-after.png'
+    tagNumber: 909,
+    name: 'Yearling',
+    beforeImgSrc: '909-before.png',
+    afterImgSrc: '909-after.png'
   },
   {
     id: 9,
-    tagNumber: 503,
-    name: '',
-    beforeImgSrc: '503-before.png',
-    afterImgSrc: '503-after.png'
+    tagNumber: 435,
+    name: 'Holly',
+    beforeImgSrc: '435-before.png',
+    afterImgSrc: '435-after.png'
   },
   {
     id: 10,
-    tagNumber: 747,
-    name: '',
-    beforeImgSrc: '747-before.png',
-    afterImgSrc: '747-after.png'
+    tagNumber: 32,
+    name: 'Chunk',
+    beforeImgSrc: '32-before.png',
+    afterImgSrc: '32-after.png'
   },
   {
     id: 11,
-    tagNumber: 402,
-    name: '',
-    beforeImgSrc: '402-before.png',
-    afterImgSrc: '402-after.png'
+    tagNumber: 128,
+    name: 'Grazer',
+    beforeImgSrc: '128-before.png',
+    afterImgSrc: '128-after.png'
   },
   {
     id: 12,
