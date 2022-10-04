@@ -24,21 +24,19 @@ describe('Bear', () => {
         const { getByRole, queryByRole } = render(<Bear bear={mockBear} pickThisBear={mockPickWinner} />);
         let beforeButton = getByRole('button', { name: beforeLabel });
         let afterButton = queryByRole('button', { name: afterLabel });
-        let image = getByRole('img');
 
         expect(beforeButton).toBeTruthy();
         expect(afterButton).toBeFalsy();
-        expect(image.getAttribute('src')).toContain(mockBear.afterImgSrc);
+        expect(beforeButton.getAttribute('src')).toContain(mockBear.afterImgSrc);
 
         fireEvent.click(beforeButton);
 
         const newBeforeButton = queryByRole('button', { name: beforeLabel });
-        afterButton = queryByRole('button', { name: afterLabel });
-        image = getByRole('img');
+        afterButton = getByRole('button', { name: afterLabel });
 
         expect(afterButton).toBeTruthy();
         expect(newBeforeButton).toBeFalsy();
-        expect(image.getAttribute('src')).toContain(mockBear.beforeImgSrc);
+        expect(afterButton.getAttribute('src')).toContain(mockBear.beforeImgSrc);
     });
 
     test('clicking bear name calls pickWinner', () => {

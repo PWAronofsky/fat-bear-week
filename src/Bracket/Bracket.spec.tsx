@@ -3,11 +3,19 @@ import { Bracket } from './Bracket';
 import { mockMatchupMap, mockBears } from '../mockData';
 import { getNextBearField, checkShouldClearDownstream, clearDownstreamMatchups } from './Bracket';
 
+const mockedUsedNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+   ...jest.requireActual('react-router-dom') as any,
+  useNavigate: () => mockedUsedNavigate,
+}));
+
+
 describe('Bracket', () => {
-    test('bracket renders champion title without champion bear displayed', () => {
+    test('bracket does not initially render champion bear', () => {
         const { queryByTestId, queryByText } = render(<Bracket/>);
 
-        expect(queryByText("Champion")).toBeTruthy();
+        expect(queryByText("Champion")).toBeFalsy();
         expect(queryByTestId("champion-image")).toBeFalsy();
         expect(queryByTestId("champion-name")).toBeFalsy();
     });
