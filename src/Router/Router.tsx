@@ -5,6 +5,7 @@ import { Header } from '../Header/Header';
 import { Login } from '../Login/Login';
 import { Standings } from '../Standings/Standings';
 import { useUserContext } from '../contexts/userContext';
+import { Footer } from '../Footer/Footer';
 
 export const Router = () => {
   return (
@@ -28,6 +29,7 @@ export const Router = () => {
         } />
         <Route path="/about" element={<About />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }
