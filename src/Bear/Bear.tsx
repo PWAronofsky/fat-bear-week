@@ -23,9 +23,12 @@ export const Bear = ({ bear, pickThisBear }: BearProps) => {
         className={`${imgStyle} shadowed`}
         src={showAfterPic ? afterImage :beforeImage} 
         alt={a11yLabels.beforeAfterButton(showAfterPic, bear?.tagNumber, bear?.name)}/>
-      {bear && (<button aria-label={a11yLabels.pickBear(bear?.tagNumber, bear?.name)} className="btn btn-secondary btn-sm shadowed" onClick={()=> pickThisBear(bear?.id)}>
+      {/* {bear && (<button aria-label={a11yLabels.pickBear(bear?.tagNumber, bear?.name)} className="btn btn-secondary btn-sm shadowed" onClick={()=> pickThisBear(bear?.id)}>
         {bear?.tagNumber} {bear?.name}
-      </button>)}
+      </button>)} */}
+      <div>
+        {bear?.tagNumber} {bear?.name}
+      </div>
     </div>
   );
 }

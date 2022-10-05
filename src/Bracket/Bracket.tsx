@@ -186,10 +186,10 @@ export const Bracket = () => {
               <div className="champion-name" data-testid="champion-name">
                 {champion?.tagNumber} {champion?.name}
               </div>
-              <button className="btn btn-secondary btn-sm shadowed" onClick={submitBracket}>Submit</button>
+              {/* <button className="btn btn-secondary btn-sm shadowed" onClick={submitBracket}>Submit</button>
               {showSuccess && 
                 <div>Success!</div>
-              }
+              } */}
             </div>
           </div>
         )}
