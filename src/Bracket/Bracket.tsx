@@ -47,7 +47,7 @@ export const clearDownstreamMatchups = (matchups: MatchupMap, matchupId: number)
 export const Bracket = () => {
   const [matchupMap, setMatchupMap] = React.useState(mockMatchupMap);
   const [champion, setChampion] = React.useState<BearType>();
-//   const [showSuccess, setShowSuccess] = React.useState(false);
+  const [showSuccess, setShowSuccess] = React.useState(false);
   const navigate = useNavigate();
   const { user } = useUserContext();
 
@@ -103,7 +103,7 @@ export const Bracket = () => {
     if(currentMatchup.pickedWinner === bearId)
       return;
 
-//     setShowSuccess(false);
+    setShowSuccess(false);
 
     if(currentMatchup.pickedWinner === champion?.id)
       setChampion(undefined);
@@ -149,16 +149,16 @@ export const Bracket = () => {
     setMatchupMap(newMatchups);
   }
 
-//   const submitBracket = async () => {
-//     try {
-//       await Axios.post("/bracket/update-create", { token: user?.token, bracketMap: matchupMap}).then((response) => {
-//           setShowSuccess(true);
-//           console.log("bracket saved")
-//         });
-//     } catch(e) {
-//       console.log("oh nooo bracket saving failed.")
-//     }
-//   }
+  const submitBracket = async () => {
+    try {
+      await Axios.post("/bracket/update-create", { token: user?.token, bracketMap: matchupMap}).then((response) => {
+          setShowSuccess(true);
+          console.log("bracket saved")
+        });
+    } catch(e) {
+      console.log("oh nooo bracket saving failed.")
+    }
+  }
 
   return (
     <div className="page-container">
@@ -186,10 +186,10 @@ export const Bracket = () => {
               <div className="champion-name" data-testid="champion-name">
                 {champion?.tagNumber} {champion?.name}
               </div>
-              {/* <button className="btn btn-secondary btn-sm shadowed" onClick={submitBracket}>Submit</button>
+              <button className="btn btn-secondary btn-sm shadowed" onClick={submitBracket}>Submit</button>
               {showSuccess && 
                 <div>Success!</div>
-              } */}
+              }
             </div>
           </div>
         )}
