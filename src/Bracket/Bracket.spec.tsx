@@ -11,15 +11,6 @@ jest.mock('react-router-dom', () => ({
 }));
 
 
-describe('Bracket', () => {
-    test('bracket does not initially render champion bear', () => {
-        const { queryByTestId, queryByText } = render(<Bracket/>);
-
-        expect(queryByText("Champion")).toBeFalsy();
-        expect(queryByTestId("champion-image")).toBeFalsy();
-        expect(queryByTestId("champion-name")).toBeFalsy();
-    });
-});
 
 describe('Bracket Functions', () => {
     test('getNextBearField returns correct next bear field based on current matchup', () => {

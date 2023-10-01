@@ -6,6 +6,8 @@
   flex-direction: row;
   height:100vh;
   width: 100%;
+  min-width: 1324px;
+  min-height: 600px
 }
 
 .main-background {
@@ -13,6 +15,8 @@
   background-size: cover;
   background-color: #158589;
   background-repeat: no-repeat;
+  min-width: 1324px;
+  min-height: 600px
 }
 
 .column {
