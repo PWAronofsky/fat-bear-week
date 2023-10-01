@@ -18,8 +18,8 @@ export const Bear = ({ bear, pickThisBear, nodeId }: BearProps) => {
   const beforeImage = bear?.beforeImgSrc ? require(`../images/${bear?.beforeImgSrc}`) : require('../images/confusedBear.png');
 
   return (
-    <div  id={nodeId} className="bear column center">
-      <input type="image" 
+    <div className="bear column center">
+      <input id={nodeId} type="image" 
         onClick={() => setShowAfterPic(!showAfterPic)} 
         className={`${imgStyle} shadowed`}
         src={showAfterPic ? afterImage :beforeImage} 

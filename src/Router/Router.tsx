@@ -10,26 +10,28 @@ import { Footer } from '../Footer/Footer';
 export const Router = () => {
   return (
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={
-          <LoggedInRedirect>
-            <Login />
-          </LoggedInRedirect>
-        } />
-        <Route path="/bracket" element={
-          <ProtectedRoute>
-            <Bracket />
-          </ProtectedRoute>
-        } />
-        <Route path="/standings" element={
-          <ProtectedRoute>
-            <Standings />
-          </ProtectedRoute>
-        } />
-        <Route path="/about" element={<About />} />
-      </Routes>
-      <Footer />
+      <div className="main-background">
+        <Header />
+        <Routes>
+          <Route path="/" element={
+            <LoggedInRedirect>
+              <Login />
+            </LoggedInRedirect>
+          } />
+          <Route path="/bracket" element={
+            <ProtectedRoute>
+              <Bracket />
+            </ProtectedRoute>
+          } />
+          <Route path="/standings" element={
+            <ProtectedRoute>
+              <Standings />
+            </ProtectedRoute>
+          } />
+          <Route path="/about" element={<About />} />
+        </Routes>
+        <Footer />
+      </div>
     </BrowserRouter>
   )
 }
