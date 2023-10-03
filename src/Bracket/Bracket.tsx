@@ -120,11 +120,15 @@ const drawLeaderLine = (start: string, end: string, side: Side) => {
 }
 
 const repositionLeaderLines = () => {
+  removeLeaderLines()
+  drawLeaderLines()
+}
+
+const removeLeaderLines = () => {
   leaderLines.forEach(line => {
     line.remove()
   })
   leaderLines = []
-  drawLeaderLines()
 }
 
 //TODO: loading logic.
@@ -164,7 +168,7 @@ export const Bracket = () => {
           } else {
             console.log("oh nooo bracket not found.")
           }
-
+          
           setTimeout(() => {
             drawLeaderLines()
           }, 100)
@@ -179,6 +183,9 @@ export const Bracket = () => {
     }
 
     return () => {
+      setTimeout(() => {
+        removeLeaderLines()
+      }, 100)
       isCancelled = true;
     }
 
