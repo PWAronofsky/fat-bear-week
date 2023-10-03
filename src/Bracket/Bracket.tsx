@@ -165,7 +165,9 @@ export const Bracket = () => {
             console.log("oh nooo bracket not found.")
           }
 
-          drawLeaderLines()
+          setTimeout(() => {
+            drawLeaderLines()
+          }, 100)
         })
       } catch {
         console.log("oh nooo bracket fetching failed.")
