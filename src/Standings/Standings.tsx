@@ -32,9 +32,6 @@ export const Standings = () => {
       <div className="row align-items-center">
         <div className="py-3 py-md-5">
           <h1 className="display-3">Standings</h1>
-          <p className="lead text-dark">
-            This page is in hibernation, more improvements to come.
-          </p>
           <ol>
             {standings.map((userStanding) => {
               return (
