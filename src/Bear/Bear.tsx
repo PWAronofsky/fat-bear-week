@@ -27,9 +27,9 @@ export const Bear = ({ bear, pickThisBear, nodeId }: BearProps) => {
       {bear && (<button aria-label={a11yLabels.pickBear(bear?.tagNumber, bear?.name)} className="btn btn-secondary btn-sm shadowed" onClick={()=> pickThisBear(bear?.id)}>
         {bear?.tagNumber} {bear?.name}
       </button>)}
-      <div>
+      {/* <div>
         {bear?.tagNumber} {bear?.name}
-      </div>
+      </div> */}
     </div>
   );
 }
