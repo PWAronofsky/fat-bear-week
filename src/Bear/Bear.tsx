@@ -1,6 +1,7 @@
 import React from 'react';
 import { BearType } from '../types';
 import { a11yLabels } from '../a11yLabels';
+import { useUserContext } from '../contexts/userContext';
 
 export interface BearProps {
   bear?: BearType
@@ -11,6 +12,9 @@ export interface BearProps {
 export const Bear = ({ bear, pickThisBear, nodeId }: BearProps) => {
   const [showAfterPic, setShowAfterPic] = React.useState(true);
   const [imgStyle, setImgStyle] = React.useState("missing-image");
+  const { user } = useUserContext();
+  const isAdmin = user?.username === "admin"
+  
   React.useEffect(() => {
     setImgStyle((showAfterPic && bear?.afterImgSrc) || bear?.beforeImgSrc ? "bear-image" : "missing-image");
   }, [showAfterPic, bear]);
@@ -24,9 +28,9 @@ export const Bear = ({ bear, pickThisBear, nodeId }: BearProps) => {
         className={`${imgStyle} shadowed`}
         src={showAfterPic ? afterImage :beforeImage} 
         alt={a11yLabels.beforeAfterButton(showAfterPic, bear?.tagNumber, bear?.name)}/>
-      {/* {bear && (<button aria-label={a11yLabels.pickBear(bear?.tagNumber, bear?.name)} className="btn btn-secondary btn-sm shadowed" onClick={()=> pickThisBear(bear?.id)}>
+      {bear && user?.username === "admin" && (<button aria-label={a11yLabels.pickBear(bear?.tagNumber, bear?.name)} className="btn btn-secondary btn-sm shadowed" onClick={()=> pickThisBear(bear?.id)}>
         {bear?.tagNumber} {bear?.name}
-      </button>)} */}
+      </button>)}
       <div>
         {bear?.tagNumber} {bear?.name}
       </div>
