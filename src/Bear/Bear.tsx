@@ -13,7 +13,6 @@ export const Bear = ({ bear, pickThisBear, nodeId }: BearProps) => {
   const [showAfterPic, setShowAfterPic] = React.useState(true);
   const [imgStyle, setImgStyle] = React.useState("missing-image");
   const { user } = useUserContext();
-  const isAdmin = user?.username === "admin"
   
   React.useEffect(() => {
     setImgStyle((showAfterPic && bear?.afterImgSrc) || bear?.beforeImgSrc ? "bear-image" : "missing-image");
