@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../contexts/userContext';
 
-export const Login = () => {
+export const Register = () => {
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -27,15 +27,6 @@ export const Login = () => {
           navigate("/bracket");
         });
         console.log("User was successfully created.");
-        // await Axios.post("/login", { username, password }).then((response) => {
-        //   updateUser({
-        //     username: response.data.username,
-        //     token: response.data.token
-        //   });
-  
-        //   navigate("/bracket");
-        // });
-        // console.log("User was successfully logged in.");
     } catch (e: any) {
       setFetchingData(false);
       setErrorMessage(e?.response?.data?.join(" "));

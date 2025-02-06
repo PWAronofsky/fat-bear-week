@@ -7,7 +7,6 @@ import { mockBears, mockMatchupMap } from '../mockData';
 import { Matchup } from '../Matchup/Matchup';
 import { BearType, MatchupMap } from '../types';
 import { useUserContext } from '../contexts/userContext';
-import LeaderLine from '../leader-line.min'
 import '../App.css';
 
 enum Side {
@@ -21,27 +20,6 @@ export const getNextBearField = (matchupId: number) => {
 
 export const checkShouldClearDownstream = (pickedWinner?: number, bearId?: number) => {
   return pickedWinner !== undefined && pickedWinner === bearId;
-}
-
-const getLeaderOptions = (side: Side) => {
-  return {
-    path: 'grid',
-    endPlug: 'behind',
-    color: 'black',
-    startSocket: getSocketPosition(side, true),
-    endSocket: getSocketPosition(side, false),
-  }
-}
-
-const getSocketPosition = (side: Side, start: boolean) => {
-  switch(side) {
-    case Side.left:
-      return start ? 'right': 'left'
-    case Side.right:
-      return start ? 'left' : 'right'
-    default:
-      return start ? 'top': 'bottom'
-  }
 }
 
 export const clearDownstreamMatchups = (matchups: MatchupMap, matchupId: number): MatchupMap => {
@@ -68,67 +46,6 @@ export const clearDownstreamMatchups = (matchups: MatchupMap, matchupId: number)
   }
 
   return matchups;
-}
-
-// Makeshift Type
-type LeaderLineType = {
-  remove: () => void
-}
-
-let leaderLines: LeaderLineType[] = []
-const drawLeaderLines = () => {
-  leaderLines.push(drawLeaderLine('node-1-0', 'node-5-0', Side.left))
-  leaderLines.push(drawLeaderLine('node-1-1', 'node-5-0', Side.left))
-
-  leaderLines.push(drawLeaderLine('node-5-0', 'node-9-0', Side.left))
-  leaderLines.push(drawLeaderLine('node-5-1', 'node-9-0', Side.left))
-
-  leaderLines.push(drawLeaderLine('node-2-0', 'node-6-0', Side.left))
-  leaderLines.push(drawLeaderLine('node-2-1', 'node-6-0', Side.left))
-
-  leaderLines.push(drawLeaderLine('node-6-0', 'node-9-1', Side.left))
-  leaderLines.push(drawLeaderLine('node-6-1', 'node-9-1', Side.left))
-
-  leaderLines.push(drawLeaderLine('node-9-0', 'node-11-0', Side.left))
-  leaderLines.push(drawLeaderLine('node-9-1', 'node-11-0', Side.left))
-
-
-  leaderLines.push(drawLeaderLine('node-3-0', 'node-7-0', Side.right))
-  leaderLines.push(drawLeaderLine('node-3-1', 'node-7-0', Side.right))
-
-  leaderLines.push(drawLeaderLine('node-7-0', 'node-10-0', Side.right))
-  leaderLines.push(drawLeaderLine('node-7-1', 'node-10-0', Side.right))
-
-  leaderLines.push(drawLeaderLine('node-4-0', 'node-8-0', Side.right))
-  leaderLines.push(drawLeaderLine('node-4-1', 'node-8-0', Side.right))
-
-  leaderLines.push(drawLeaderLine('node-8-0', 'node-10-1', Side.right))
-  leaderLines.push(drawLeaderLine('node-8-1', 'node-10-1', Side.right))
-
-  leaderLines.push(drawLeaderLine('node-10-0', 'node-11-1', Side.right))
-  leaderLines.push(drawLeaderLine('node-10-1', 'node-11-1', Side.right))
-
-  leaderLines.push(drawLeaderLine('node-11-0', 'champion-container', Side.center))
-}
-
-const drawLeaderLine = (start: string, end: string, side: Side) => {
-  return new LeaderLine(
-    document.getElementById(start),
-    document.getElementById(end), 
-    getLeaderOptions(side)
-  )
-}
-
-const repositionLeaderLines = () => {
-  removeLeaderLines()
-  drawLeaderLines()
-}
-
-const removeLeaderLines = () => {
-  leaderLines.forEach(line => {
-    line.remove()
-  })
-  leaderLines = []
 }
 
 //TODO: loading logic.
@@ -168,10 +85,6 @@ export const Bracket = () => {
           } else {
             console.log("oh nooo bracket not found.")
           }
-          
-          setTimeout(() => {
-            drawLeaderLines()
-          }, 100)
         })
       } catch {
         console.log("oh nooo bracket fetching failed.")
@@ -183,9 +96,6 @@ export const Bracket = () => {
     }
 
     return () => {
-      setTimeout(() => {
-        removeLeaderLines()
-      }, 100)
       isCancelled = true;
     }
 
@@ -242,9 +152,6 @@ export const Bracket = () => {
     }
 
     setMatchupMap(newMatchups);
-    setTimeout(() => {
-      repositionLeaderLines()
-    }, 100)
   }
 
   const submitBracket = async () => {

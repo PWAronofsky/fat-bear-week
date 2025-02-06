@@ -5,6 +5,7 @@ import { User } from '../types';
 interface UserContextType {
   user?: User,
   updateUser: (user?: User) => void,
+  canEditBracket: boolean,
   isLoggedIn: boolean,
   logout: () => void
 }
@@ -12,13 +13,15 @@ interface UserContextType {
 const UserContext = React.createContext<UserContextType>({
   user: undefined,
   updateUser: function () {},
-  isLoggedIn: true,
+  isLoggedIn: false,
+  canEditBracket: false,
   logout: function () {}
 });
 
 export const UserContextProvider = ({ children }: any) => {
   const [user, setUser] = React.useState<User>();
   const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+  const [canEditBracket, setCanEditBracket] = React.useState(false);
 
   const logout = React.useCallback(() => {
     setUser(undefined);
@@ -51,14 +54,18 @@ export const UserContextProvider = ({ children }: any) => {
       }
 
       const checkToken = async () => {
-        await Axios.post(`${process.env.REACT_APP_API_BASE_URL}/checktoken`, { token: token }).then((response) => {
+        await Axios.post("/checktoken", { token: token }).then(async (response) => {
           if(isCancelled) {
             return;
           }
           if(!response.data){
             setIsLoggedIn(false);
             updateUser();
+            return;
           } else {
+            await Axios.post("/bracket/canEdit", { token: token }).then((response) => { 
+              setCanEditBracket(response.data);
+            })
             setIsLoggedIn(true);
             updateUser({
               username: username,
@@ -72,7 +79,7 @@ export const UserContextProvider = ({ children }: any) => {
     }
   }, [user?.username, updateUser]);
 
-  const contextValues = { user, updateUser, isLoggedIn, logout };
+  const contextValues = { user, updateUser, canEditBracket, isLoggedIn, logout };
 
   return (
     <UserContext.Provider value={contextValues}>
