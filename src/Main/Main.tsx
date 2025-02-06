@@ -4,9 +4,7 @@ import { UserContextProvider } from '../contexts/userContext';
 import { Router } from '../Router/Router';
 
 export const Main = () => {
-  React.useEffect(() => {
-    Axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
-  }, []);
+  Axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
 
   return (
     <React.StrictMode>

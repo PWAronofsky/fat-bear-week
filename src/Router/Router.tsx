@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { About } from '../About/About';
 import { Bracket } from '../Bracket/Bracket';
 import { Header } from '../Header/Header';
-import { Login } from '../Login/Login';
+import { Register } from '../Register/Register';
 import { Standings } from '../Standings/Standings';
 import { useUserContext } from '../contexts/userContext';
 import { Footer } from '../Footer/Footer';
@@ -15,7 +15,7 @@ export const Router = () => {
         <Routes>
           <Route path="/" element={
             <LoggedInRedirect>
-              <Login />
+              <Register />
             </LoggedInRedirect>
           } />
           <Route path="/bracket" element={
