@@ -1,0 +1,1 @@
+export const getNodeId = (matchupId: Number, bearPosition: Number) => `node-${matchupId}-${bearPosition}`;

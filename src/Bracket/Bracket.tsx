@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Axios from 'axios';
+import Xarrow from 'react-xarrows';
 import { useNavigate } from 'react-router-dom';
 
 import { mockBears, mockMatchupMap } from '../mockData';
@@ -8,12 +9,8 @@ import { Matchup } from '../Matchup/Matchup';
 import { BearType, MatchupMap } from '../types';
 import { useUserContext } from '../contexts/userContext';
 import '../App.css';
+import { getNodeId } from '../util';
 
-enum Side {
-  left,
-  right,
-  center
-}
 export const getNextBearField = (matchupId: number) => {
   return matchupId % 2 === 1 ? 'bear1' : 'bear2';
 }
@@ -171,7 +168,6 @@ export const Bracket = () => {
         <Matchup matchup={matchupMap[1]} pickWinner={pickWinner}/>
         <Matchup matchup={matchupMap[2]} pickWinner={pickWinner}/>
       </div>
-
       <div className="column round-two">
         <Matchup matchup={matchupMap[5]} pickWinner={pickWinner}/>
         <Matchup matchup={matchupMap[6]} pickWinner={pickWinner}/>
@@ -209,6 +205,28 @@ export const Bracket = () => {
         <Matchup matchup={matchupMap[3]} pickWinner={pickWinner}/>
         <Matchup matchup={matchupMap[4]} pickWinner={pickWinner}/>
       </div>
+      {/* Bracket Lines - Left Side */}
+      <Xarrow start={getNodeId(1, 0)} end={getNodeId(5, 0)} color="black" showHead={false} startAnchor={'right'} endAnchor={'left'} path={'grid'} />
+      <Xarrow start={getNodeId(1, 1)} end={getNodeId(5, 0)} color="black" showHead={false} startAnchor={'right'} endAnchor={'left'} path={'grid'} />
+      <Xarrow start={getNodeId(2, 0)} end={getNodeId(6, 1)} color="black" showHead={false} startAnchor={'right'} endAnchor={'left'} path={'grid'} />
+      <Xarrow start={getNodeId(2, 1)} end={getNodeId(6, 1)} color="black" showHead={false} startAnchor={'right'} endAnchor={'left'} path={'grid'} />
+      <Xarrow start={getNodeId(5, 0)} end={getNodeId(9, 0)} color="black" showHead={false} startAnchor={'right'} endAnchor={'left'} path={'grid'} />
+      <Xarrow start={getNodeId(5, 1)} end={getNodeId(9, 0)} color="black" showHead={false} startAnchor={'right'} endAnchor={'left'} path={'grid'} />
+      <Xarrow start={getNodeId(6, 0)} end={getNodeId(9, 1)} color="black" showHead={false} startAnchor={'right'} endAnchor={'left'} path={'grid'} />
+      <Xarrow start={getNodeId(6, 1)} end={getNodeId(9, 1)} color="black" showHead={false} startAnchor={'right'} endAnchor={'left'} path={'grid'} />
+      <Xarrow start={getNodeId(9, 0)} end={getNodeId(11, 0)} color="black" showHead={false} startAnchor={'right'} endAnchor={'left'} path={'grid'} />
+      <Xarrow start={getNodeId(9, 1)} end={getNodeId(11, 0)} color="black" showHead={false} startAnchor={'right'} endAnchor={'left'} path={'grid'} />
+      {/* Bracket Lines - Right Side */}
+      <Xarrow start={getNodeId(3, 0)} end={getNodeId(7, 0)} color="black" showHead={false} startAnchor={'left'} endAnchor={'right'} path={'grid'} />
+      <Xarrow start={getNodeId(3, 1)} end={getNodeId(7, 0)} color="black" showHead={false} startAnchor={'left'} endAnchor={'right'} path={'grid'} />
+      <Xarrow start={getNodeId(4, 0)} end={getNodeId(8, 1)} color="black" showHead={false} startAnchor={'left'} endAnchor={'right'} path={'grid'} />
+      <Xarrow start={getNodeId(4, 1)} end={getNodeId(8, 1)} color="black" showHead={false} startAnchor={'left'} endAnchor={'right'} path={'grid'} />
+      <Xarrow start={getNodeId(7, 0)} end={getNodeId(10, 0)} color="black" showHead={false} startAnchor={'left'} endAnchor={'right'} path={'grid'} />
+      <Xarrow start={getNodeId(7, 1)} end={getNodeId(10, 0)} color="black" showHead={false} startAnchor={'left'} endAnchor={'right'} path={'grid'} />
+      <Xarrow start={getNodeId(8, 0)} end={getNodeId(10, 1)} color="black" showHead={false} startAnchor={'left'} endAnchor={'right'} path={'grid'} />
+      <Xarrow start={getNodeId(8, 1)} end={getNodeId(10, 1)} color="black" showHead={false} startAnchor={'left'} endAnchor={'right'} path={'grid'} />
+      <Xarrow start={getNodeId(10, 0)} end={getNodeId(11, 1)} color="black" showHead={false} startAnchor={'left'} endAnchor={'right'} path={'grid'} />
+      <Xarrow start={getNodeId(10, 1)} end={getNodeId(11, 1)} color="black" showHead={false} startAnchor={'left'} endAnchor={'right'} path={'grid'} />
     </div>
   );
 }

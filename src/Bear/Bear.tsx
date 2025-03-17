@@ -11,20 +11,23 @@ export interface BearProps {
 
 export const Bear = ({ bear, pickThisBear, nodeId }: BearProps) => {
   const [showAfterPic, setShowAfterPic] = React.useState(true);
-  const [imgStyle, setImgStyle] = React.useState("missing-image");
+  // const [imgStyle, setImgStyle] = React.useState("missing-image");
   const { user, canEditBracket } = useUserContext();
-  
-  React.useEffect(() => {
-    setImgStyle((showAfterPic && bear?.afterImgSrc) || bear?.beforeImgSrc ? "bear-image" : "missing-image");
-  }, [showAfterPic, bear]);
+
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+
+  // React.useEffect(() => {
+  //   setImgStyle((showAfterPic && bear?.afterImgSrc) || bear?.beforeImgSrc ? "bear-image" : "missing-image");
+  // }, [showAfterPic, bear]);
   const afterImage = bear?.afterImgSrc ? require(`../images/${bear?.afterImgSrc}`) : require('../images/confusedBear.png');
   const beforeImage = bear?.beforeImgSrc ? require(`../images/${bear?.beforeImgSrc}`) : require('../images/confusedBear.png');
 
   return (
     <div className="bear column center">
-      <input id={nodeId} type="image" 
+      <input id={nodeId} ref={inputRef} type="image" 
         onClick={() => setShowAfterPic(!showAfterPic)} 
-        className={`${imgStyle} shadowed`}
+        className={`bear-image shadowed`}
         src={showAfterPic ? afterImage :beforeImage} 
         alt={a11yLabels.beforeAfterButton(showAfterPic, bear?.tagNumber, bear?.name)}/>
       { bear && (canEditBracket ? (

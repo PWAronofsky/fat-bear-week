@@ -1,3 +1,5 @@
+import { MutableRefObject, RefObject } from "react"
+
 export interface BearType {
   id: number,
   tagNumber: number,
@@ -17,6 +19,10 @@ export interface MatchupType {
 
 export interface MatchupMap {
   [key: string]: MatchupType
+}
+
+export interface BearElementsMap {
+  [key: string]: RefObject<HTMLDivElement>
 }
 
 export interface User {
