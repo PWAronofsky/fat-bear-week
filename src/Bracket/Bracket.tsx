@@ -51,7 +51,7 @@ export const Bracket = () => {
   const [champion, setChampion] = React.useState<BearType>();
   const [showSuccess, setShowSuccess] = React.useState(false);
   const navigate = useNavigate();
-  const { user } = useUserContext();
+  const { user, canEditBracket } = useUserContext();
 
   // Preload images
   // const bearsRef = React.useRef(mockBears)
@@ -186,7 +186,7 @@ export const Bracket = () => {
               <div className="champion-name" data-testid="champion-name">
                 {champion?.tagNumber} {champion?.name}
               </div>
-              <button className="btn btn-secondary btn-sm shadowed" onClick={submitBracket} disabled={user?.username !== "admin"}>Submit</button>
+              <button className="btn btn-secondary btn-sm shadowed" onClick={submitBracket} disabled={!canEditBracket}>Submit</button>
               {showSuccess && 
                 <div>Success!</div>
               }
