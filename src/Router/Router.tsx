@@ -10,6 +10,7 @@ import { Footer } from '../Footer/Footer';
 export const Router = () => {
   return (
     <BrowserRouter>
+      <div className="app-background"/>
       <div className="app-container column">
         <Header />
         <Routes>
