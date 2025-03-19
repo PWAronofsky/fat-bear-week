@@ -44,7 +44,7 @@ export const Header = () => {
     <header className="header-bar">
       <div className="header-container">
         <h4 className="font-weight-normal header-section">
-            <div className="row">
+            <div className="row no-wrap">
               <a href="/" aria-label="home">
                 <img className="header-icon" src={require("../images/bear-2-48.png")} alt=""/>
               </a>
@@ -63,9 +63,9 @@ export const Header = () => {
               </a>
             </div>
         </h4>
-        <div className="header-section">
+        <div className="header-section no-wrap">
           <form onSubmit={handleSubmit}>
-            <div className="row align-items-end">
+            <div className="row align-items-end no-wrap">
               {!isLoggedIn && (
                 <>
                   <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">

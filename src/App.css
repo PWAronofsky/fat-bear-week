@@ -86,8 +86,8 @@
 
 .header-bar {
   background-color: #158589;
-  position: sticky;
-  top: 0;
+  position: fixed;
+  width: 100vw;
   z-index: 5;
 }
 
@@ -107,4 +107,8 @@
 .header-icon {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.no-wrap {
+  flex-wrap: nowrap;
 }
