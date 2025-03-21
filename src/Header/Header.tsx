@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../contexts/userContext';
 
-export const Header = () => {
+export const Header = React.forwardRef ((_, ref) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [fetchingData, setFetchingData] = React.useState(false);
@@ -41,7 +41,7 @@ export const Header = () => {
   }
 
   return (
-    <header className="header-bar">
+    <header className="header-bar" ref={ref as React.RefObject<HTMLElement>}>
       <div className="header-container">
         <h4 className="font-weight-normal header-section">
             <div className="row no-wrap">
@@ -91,4 +91,4 @@ export const Header = () => {
       </div>
     </header>
   )
-}
+})
