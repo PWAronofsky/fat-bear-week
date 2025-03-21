@@ -11,7 +11,7 @@ const pickLabel = a11yLabels.pickBear(mockBear.tagNumber, mockBear.name);
 const nodeId = "mock-node-1-1"
 describe('Bear', () => {
     test('bear renders', () => {
-        const { getByRole, queryByRole } = render(<Bear bear={mockBear} pickThisBear={mockPickWinner} nodeId={nodeId}/>);
+        const { getByRole, queryByRole } = render(<Bear bear={mockBear} pickThisBear={mockPickWinner} nodeId={nodeId} row={1} column={1}/>);
         const beforeButton = getByRole('button', { name: beforeLabel });
         const afterButton = queryByRole('button', { name: afterLabel });
         const bearPickButton = getByRole('button', { name: pickLabel });
@@ -22,7 +22,7 @@ describe('Bear', () => {
     });
 
     test('clicking bear picture changes label and img src', () => {
-        const { getByRole, queryByRole } = render(<Bear bear={mockBear} pickThisBear={mockPickWinner} nodeId={nodeId}/>);
+        const { getByRole, queryByRole } = render(<Bear bear={mockBear} pickThisBear={mockPickWinner} nodeId={nodeId} row={1} column={1}/>);
         let beforeButton = getByRole('button', { name: beforeLabel });
         let afterButton = queryByRole('button', { name: afterLabel });
 
@@ -41,7 +41,7 @@ describe('Bear', () => {
     });
 
     test('clicking bear name calls pickWinner', () => {
-        const { getByRole } = render(<Bear bear={mockBear} pickThisBear={mockPickWinner} nodeId={nodeId}/>);
+        const { getByRole } = render(<Bear bear={mockBear} pickThisBear={mockPickWinner} nodeId={nodeId} row={1} column={1}/>);
         const bearPickButton = getByRole('button', { name: pickLabel });
 
         fireEvent.click(bearPickButton);

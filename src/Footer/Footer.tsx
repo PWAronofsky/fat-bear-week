@@ -1,3 +1,3 @@
 export const Footer = () => {
-  return (<div style={{ textAlign: 'center', fontSize: 'small'}}>Copyright {new Date().getFullYear()} Paul Wilhelm-Aronofsky</div>)
+  return (<div className="footer">Copyright {new Date().getFullYear()} Paul Wilhelm-Aronofsky</div>)
 }

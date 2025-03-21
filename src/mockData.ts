@@ -93,77 +93,110 @@ export const mockMatchups: MatchupType[] = [
     bear1: mockBears[0],
     bear2: mockBears[1],
     nextMatchup: 5,
-    pickedWinner: undefined
+    pickedWinner: undefined,
+    column: 1,
+    bear1Row: 1,
+    bear2Row: 3
   },
   {
     id: 2,
     bear1: mockBears[2],
     bear2: mockBears[3],
     nextMatchup: 6,
-    pickedWinner: undefined
+    pickedWinner: undefined,
+    column: 1,
+    bear1Row: 8,
+    bear2Row: 10
   },
   {
     id: 3,
     bear1: mockBears[4],
     bear2: mockBears[5],
     nextMatchup: 7,
-    pickedWinner: undefined
+    pickedWinner: undefined,
+    column: 7,
+    bear1Row: 1,
+    bear2Row: 3
   },
   {
     id: 4,
     bear1: mockBears[6],
     bear2: mockBears[7],
     nextMatchup: 8,
-    pickedWinner: undefined
+    pickedWinner: undefined,
+    column: 7,
+    bear1Row: 8,
+    bear2Row: 10
   },
   {
     id: 5,
     bear1: undefined,
     bear2: mockBears[8],
     nextMatchup: 9,
-    pickedWinner: undefined
+    pickedWinner: undefined,
+    column: 2,
+    bear1Row: 2,
+    bear2Row: 4
   },
   {
     id: 6,
     bear1: mockBears[9],
     bear2: undefined,
     nextMatchup: 9,
-    pickedWinner: undefined
+    pickedWinner: undefined,
+    column: 2,
+    bear1Row: 7,
+    bear2Row: 9
   },
   {
     id: 7,
     bear1: undefined,
     bear2: mockBears[10],
     nextMatchup: 10,
-    pickedWinner: undefined
+    pickedWinner: undefined,
+    column: 6,
+    bear1Row: 2,
+    bear2Row: 4
   },
   {
     id: 8,
     bear1: mockBears[11],
     bear2: undefined,
     nextMatchup: 10,
-    pickedWinner: undefined
+    pickedWinner: undefined,
+    column: 6,
+    bear1Row: 7,
+    bear2Row: 9
   },
   {
     id: 9,
     bear1: undefined,
     bear2: undefined,
     nextMatchup: 11,
-    pickedWinner: undefined
+    pickedWinner: undefined,
+    column: 3,
+    bear1Row: 3,
+    bear2Row: 8
   },
   {
     id: 10,
     bear1: undefined,
     bear2: undefined,
     nextMatchup: 11,
-    pickedWinner: undefined
+    pickedWinner: undefined,
+    column: 5,
+    bear1Row: 3,
+    bear2Row: 8
   },
   {
     id: 11,
     bear1: undefined,
     bear2: undefined,
     nextMatchup: 12,
-    pickedWinner: undefined
+    pickedWinner: undefined,
+    column: 4,
+    bear1Row: 5,
+    bear2Row: 6
   }
 ];
 
