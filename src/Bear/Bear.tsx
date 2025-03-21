@@ -6,10 +6,12 @@ import { useUserContext } from '../contexts/userContext';
 export interface BearProps {
   bear?: BearType
   pickThisBear: (id?: number) => void
-  nodeId: string
+  nodeId: string,
+  row: number,
+  column: number
 }
 
-export const Bear = ({ bear, pickThisBear, nodeId }: BearProps) => {
+export const Bear = ({ bear, pickThisBear, nodeId, row, column }: BearProps) => {
   const [showAfterPic, setShowAfterPic] = React.useState(true);
   // const [imgStyle, setImgStyle] = React.useState("missing-image");
   const { user, canEditBracket } = useUserContext();
@@ -22,9 +24,8 @@ export const Bear = ({ bear, pickThisBear, nodeId }: BearProps) => {
   // }, [showAfterPic, bear]);
   const afterImage = bear?.afterImgSrc ? require(`../images/${bear?.afterImgSrc}`) : require('../images/confusedBear.png');
   const beforeImage = bear?.beforeImgSrc ? require(`../images/${bear?.beforeImgSrc}`) : require('../images/confusedBear.png');
-
   return (
-    <div className="bear column center">
+    <div className="bear column center" style={{ gridRow: `${row}`, gridColumn: `${column}` }}>
       <input id={nodeId} ref={inputRef} type="image" 
         onClick={() => setShowAfterPic(!showAfterPic)} 
         className={`bear-image shadowed`}

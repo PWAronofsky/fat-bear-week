@@ -32,7 +32,7 @@ export const Router = () => {
     <BrowserRouter>
       <div className="app-background"/>
       <Header ref={headerRef} />
-      <div className="app-container column" style={{ paddingTop: `${height}px` }}>
+      <div className="app-container" style={{ paddingTop: `${height}px` }}>
         <Routes>
           <Route path="/" element={
             <LoggedInRedirect>
@@ -51,8 +51,8 @@ export const Router = () => {
           } />
           <Route path="/about" element={<About />} />
         </Routes>
-        <Footer />
       </div>
+      <Footer />
     </BrowserRouter>
   )
 }

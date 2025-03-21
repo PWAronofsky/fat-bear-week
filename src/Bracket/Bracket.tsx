@@ -163,48 +163,31 @@ export const Bracket = () => {
   }
 
   return (
-    <div className="page-container">
-      <div className="column">
-        <Matchup matchup={matchupMap[1]} pickWinner={pickWinner}/>
-        <Matchup matchup={matchupMap[2]} pickWinner={pickWinner}/>
+    <div className="page-container-grid">
+      <Matchup matchup={matchupMap[1]} pickWinner={pickWinner}/>
+      <Matchup matchup={matchupMap[2]} pickWinner={pickWinner}/>
+      <Matchup matchup={matchupMap[5]} pickWinner={pickWinner}/>
+      <Matchup matchup={matchupMap[6]} pickWinner={pickWinner}/>
+      <Matchup matchup={matchupMap[9]} pickWinner={pickWinner}/>
+      <Matchup matchup={matchupMap[11]} pickWinner={pickWinner}/>
+      <div id="champion-container" className="bear column center" style={{ gridRow: "1", gridColumn: "4" }}>
+        <div>
+          Champion
+        </div>
+        {champion && (<img className="bear-image shadowed" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} alt="champion profile"/>)}
+        <div className="champion-name" data-testid="champion-name">
+          {champion?.tagNumber} {champion?.name}
+        </div>
+        <button className="btn btn-secondary btn-sm shadowed" onClick={submitBracket} disabled={!canEditBracket}>Submit</button>
+        {showSuccess && 
+          <div>Success!</div>
+        }
       </div>
-      <div className="column round-two">
-        <Matchup matchup={matchupMap[5]} pickWinner={pickWinner}/>
-        <Matchup matchup={matchupMap[6]} pickWinner={pickWinner}/>
-      </div>
-      <div className="column center">
-        <Matchup matchup={matchupMap[9]} pickWinner={pickWinner}/>
-      </div>
-      <div className="column center">
-        <Matchup matchup={matchupMap[11]} pickWinner={pickWinner}/>
-          <div id="champion-container" className="champion-container">
-            <div className="column center">
-              <div>
-                Champion
-              </div>
-              {champion && (<img className="bear-image shadowed" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} alt="champion profile"/>)}
-              <div className="champion-name" data-testid="champion-name">
-                {champion?.tagNumber} {champion?.name}
-              </div>
-              <button className="btn btn-secondary btn-sm shadowed" onClick={submitBracket} disabled={!canEditBracket}>Submit</button>
-              {showSuccess && 
-                <div>Success!</div>
-              }
-            </div>
-          </div>
-      </div>
-      <div className="column right center">
-        <Matchup matchup={matchupMap[10]} pickWinner={pickWinner}/>
-      </div>
-      <div className="column right round-two">
-        <Matchup matchup={matchupMap[7]} pickWinner={pickWinner}/>
-        <Matchup matchup={matchupMap[8]} pickWinner={pickWinner}/>
-      </div>
-
-      <div className="column right">
-        <Matchup matchup={matchupMap[3]} pickWinner={pickWinner}/>
-        <Matchup matchup={matchupMap[4]} pickWinner={pickWinner}/>
-      </div>
+      <Matchup matchup={matchupMap[10]} pickWinner={pickWinner}/>
+      <Matchup matchup={matchupMap[7]} pickWinner={pickWinner}/>
+      <Matchup matchup={matchupMap[8]} pickWinner={pickWinner}/>
+      <Matchup matchup={matchupMap[3]} pickWinner={pickWinner}/>
+      <Matchup matchup={matchupMap[4]} pickWinner={pickWinner}/>
       {/* Bracket Lines - Left Side */}
       <Xarrow start={getNodeId(1, 0)} end={getNodeId(5, 0)} color="black" showHead={false} startAnchor={'right'} endAnchor={'left'} path={'grid'} />
       <Xarrow start={getNodeId(1, 1)} end={getNodeId(5, 0)} color="black" showHead={false} startAnchor={'right'} endAnchor={'left'} path={'grid'} />

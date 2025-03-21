@@ -14,7 +14,10 @@ export interface MatchupType {
   bear2?: BearType,
   winner?: number,
   pickedWinner?: number,
-  nextMatchup: number
+  nextMatchup: number,
+  column: number,
+  bear1Row: number,
+  bear2Row: number
 }
 
 export interface MatchupMap {

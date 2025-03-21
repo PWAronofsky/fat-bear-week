@@ -15,9 +15,9 @@ export interface MatchupProps {
     }
     
     return (
-      <div className="matchup">
-        <Bear bear={matchup.bear1} pickThisBear={pickThisBear} nodeId={getNodeId(matchup.id, 0)}/>
-        <Bear bear={matchup.bear2} pickThisBear={pickThisBear} nodeId={getNodeId(matchup.id, 1)}/>
-      </div>
+      <>
+        <Bear bear={matchup.bear1} pickThisBear={pickThisBear} nodeId={getNodeId(matchup.id, 0)} row={matchup.bear1Row} column={matchup.column}/>
+        <Bear bear={matchup.bear2} pickThisBear={pickThisBear} nodeId={getNodeId(matchup.id, 1)} row={matchup.bear2Row} column={matchup.column}/>
+      </>
     )
   }
