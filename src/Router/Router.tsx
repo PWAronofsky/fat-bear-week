@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { About } from '../About/About';
 import { Bracket } from '../Bracket/Bracket';
@@ -8,11 +9,30 @@ import { useUserContext } from '../contexts/userContext';
 import { Footer } from '../Footer/Footer';
 
 export const Router = () => {
+  const headerRef = React.useRef<HTMLElement>(null);
+  const [height, setHeight] = React.useState(0);
+
+  React.useEffect(() => {
+    const observer = new ResizeObserver(entries => {
+      setHeight(entries[0].contentRect.height);
+    });
+
+    if (headerRef.current) {
+      observer.observe(headerRef.current);
+    }
+
+    return () => {
+      if (headerRef.current) {
+        observer.unobserve(headerRef.current);
+      }
+    };
+  }, []);
+
   return (
     <BrowserRouter>
       <div className="app-background"/>
-      <div className="app-container column">
-        <Header />
+      <Header ref={headerRef} />
+      <div className="app-container column" style={{ paddingTop: `${height}px` }}>
         <Routes>
           <Route path="/" element={
             <LoggedInRedirect>

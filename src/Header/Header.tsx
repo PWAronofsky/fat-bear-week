@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../contexts/userContext';
 
-export const Header = () => {
+export const Header = React.forwardRef ((_, ref) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [fetchingData, setFetchingData] = React.useState(false);
@@ -41,10 +41,10 @@ export const Header = () => {
   }
 
   return (
-    <header className="header-bar">
+    <header className="header-bar" ref={ref as React.RefObject<HTMLElement>}>
       <div className="header-container">
         <h4 className="font-weight-normal header-section">
-            <div className="row">
+            <div className="row no-wrap">
               <a href="/" aria-label="home">
                 <img className="header-icon" src={require("../images/bear-2-48.png")} alt=""/>
               </a>
@@ -63,9 +63,9 @@ export const Header = () => {
               </a>
             </div>
         </h4>
-        <div className="header-section">
+        <div className="header-section no-wrap">
           <form onSubmit={handleSubmit}>
-            <div className="row align-items-end">
+            <div className="row align-items-end no-wrap">
               {!isLoggedIn && (
                 <>
                   <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
@@ -91,4 +91,4 @@ export const Header = () => {
       </div>
     </header>
   )
-}
+})
