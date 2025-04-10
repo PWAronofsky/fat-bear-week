@@ -2,6 +2,7 @@ import React from 'react';
 import { BearType } from '../types';
 import { a11yLabels } from '../a11yLabels';
 import { useUserContext } from '../contexts/userContext';
+import { useXarrow } from 'react-xarrows';
 
 export interface BearProps {
   bear?: BearType
@@ -24,6 +25,10 @@ export const Bear = ({ bear, pickThisBear, nodeId, row, column }: BearProps) => 
   // }, [showAfterPic, bear]);
   const afterImage = bear?.afterImgSrc ? require(`../images/${bear?.afterImgSrc}`) : require('../images/confusedBear.png');
   const beforeImage = bear?.beforeImgSrc ? require(`../images/${bear?.beforeImgSrc}`) : require('../images/confusedBear.png');
+
+  // Re-renders arrows after Bear image loads
+  useXarrow()
+  
   return (
     <div className="bear column center" style={{ gridRow: `${row}`, gridColumn: `${column}` }}>
       <input id={nodeId} ref={inputRef} type="image" 
