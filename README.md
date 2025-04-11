@@ -1,3 +1,10 @@
+# Fat Bear Week
+This project tracks brackets for the [Katmai National Park](https://www.nps.gov/katm/index.htm)'s [Fat Bear Week](https://explore.org/fat-bear-week). It handles login, submitting and viewing brackets, and league standings.
+
+A few years ago, I put together a bracket league for a group of friends. Half of the buy-in went to prize money, and the other half was donated to the park, with the [Otis Fund](https://katmaiconservancy.org/the-otis-fund) matching donations. It's become an annual tradition, and I put this together to make tracking everyone's brackets and standings easier.
+
+A leagueId is required to join (for now), but the project is built with Create React App and can be run like any other React App with `npm start`.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
