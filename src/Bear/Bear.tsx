@@ -15,7 +15,7 @@ export interface BearProps {
 export const Bear = ({ bear, pickThisBear, nodeId, row, column }: BearProps) => {
   const [showAfterPic, setShowAfterPic] = React.useState(true);
   // const [imgStyle, setImgStyle] = React.useState("missing-image");
-  const { user, canEditBracket } = useUserContext();
+  const { canEditBracket } = useUserContext();
 
   const inputRef = React.useRef<HTMLInputElement>(null);
 

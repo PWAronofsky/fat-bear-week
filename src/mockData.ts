@@ -206,3 +206,11 @@ export const mockMatchupMap = mockMatchups.reduce<MatchupMap>((acc: MatchupMap, 
     [matchup.id]: matchup
   }
 }, {});
+
+export const mockUserContext = { 
+  updateUser: jest.fn(),
+  logout: jest.fn(),
+  canEditBracket: true,
+  isLoggedIn: true,
+  user: { username: 'test', token: 'abc' }
+};

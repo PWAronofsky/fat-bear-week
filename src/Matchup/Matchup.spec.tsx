@@ -1,7 +1,8 @@
 import { fireEvent, render } from '@testing-library/react';
-import { mockMatchups } from '../mockData';
+import { mockMatchups, mockUserContext } from '../mockData';
 import { Matchup } from './Matchup';
 import { a11yLabels } from '../a11yLabels';
+import * as UserContext from '../contexts/userContext'
 
 const mockMatchup = mockMatchups[3];
 const mockPickWinner = jest.fn();
@@ -12,6 +13,12 @@ const bear2BeforeLabel = a11yLabels.beforeAfterButton(true, mockMatchup.bear2?.t
 const bear2PickLabel = a11yLabels.pickBear(mockMatchup.bear2?.tagNumber, mockMatchup.bear2?.name);
 
 describe('matchup', ()=> {
+    beforeEach(() => {
+        jest.spyOn(UserContext, 'useUserContext').mockImplementation(() => mockUserContext);
+    });
+    afterEach(() => {
+        jest.resetAllMocks();
+    });
     test('matchup renders', () => {
         const { getByRole } = render(<Matchup matchup={mockMatchup} pickWinner={mockPickWinner}/>);
 
