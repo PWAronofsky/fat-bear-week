@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
-import { mockMatchups, mockUserContext } from '../mockData';
+import { mockMatchups } from '../mockData';
 import { Matchup } from './Matchup';
 import { a11yLabels } from '../a11yLabels';
 import * as UserContext from '../contexts/userContext'
@@ -11,6 +11,14 @@ const bear1BeforeLabel = a11yLabels.beforeAfterButton(true, mockMatchup.bear1?.t
 const bear1PickLabel = a11yLabels.pickBear(mockMatchup.bear1?.tagNumber, mockMatchup.bear1?.name);
 const bear2BeforeLabel = a11yLabels.beforeAfterButton(true, mockMatchup.bear2?.tagNumber, mockMatchup.bear2?.name);
 const bear2PickLabel = a11yLabels.pickBear(mockMatchup.bear2?.tagNumber, mockMatchup.bear2?.name);
+
+const mockUserContext = { 
+    updateUser: jest.fn(),
+    logout: jest.fn(),
+    canEditBracket: true,
+    isLoggedIn: true,
+    user: { username: 'test', token: 'abc' }
+  };
 
 describe('matchup', ()=> {
     beforeEach(() => {

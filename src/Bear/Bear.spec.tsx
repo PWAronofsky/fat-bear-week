@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
-import { mockBears, mockUserContext } from '../mockData';
+import { mockBears } from '../mockData';
 import { Bear } from './Bear';
 import { a11yLabels } from '../a11yLabels';
 import * as UserContext from '../contexts/userContext'
@@ -10,6 +10,14 @@ const beforeLabel = a11yLabels.beforeAfterButton(true, mockBear.tagNumber, mockB
 const afterLabel = a11yLabels.beforeAfterButton(false, mockBear.tagNumber, mockBear.name);
 const pickLabel = a11yLabels.pickBear(mockBear.tagNumber, mockBear.name);
 const nodeId = "mock-node-1-1"
+
+const mockUserContext = { 
+    updateUser: jest.fn(),
+    logout: jest.fn(),
+    canEditBracket: true,
+    isLoggedIn: true,
+    user: { username: 'test', token: 'abc' }
+  };
 
 describe('Bear', () => {
     beforeEach(() => {
