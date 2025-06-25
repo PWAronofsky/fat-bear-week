@@ -27,7 +27,7 @@ describe('Bear', () => {
         jest.resetAllMocks();
     });
     test('bear renders', () => {
-        const { getByRole, queryByRole } = render(<Bear bear={mockBear} pickThisBear={mockPickWinner} nodeId={nodeId} row={1} column={1}/>);
+        const { getByRole, queryByRole } = render(<Bear bear={mockBear} pickThisBear={mockPickWinner} nodeId={nodeId} />);
         const beforeButton = getByRole('button', { name: beforeLabel });
         const afterButton = queryByRole('button', { name: afterLabel });
         const bearPickButton = getByRole('button', { name: pickLabel });
@@ -38,7 +38,7 @@ describe('Bear', () => {
     });
 
     test('clicking bear picture changes label and img src', () => {
-        const { getByRole, queryByRole } = render(<Bear bear={mockBear} pickThisBear={mockPickWinner} nodeId={nodeId} row={1} column={1}/>);
+        const { getByRole, queryByRole } = render(<Bear bear={mockBear} pickThisBear={mockPickWinner} nodeId={nodeId} />);
         let beforeButton = getByRole('button', { name: beforeLabel });
         let afterButton = queryByRole('button', { name: afterLabel });
 
@@ -57,7 +57,7 @@ describe('Bear', () => {
     });
 
     test('clicking bear name calls pickWinner', () => {
-        const { getByRole } = render(<Bear bear={mockBear} pickThisBear={mockPickWinner} nodeId={nodeId} row={1} column={1}/>);
+        const { getByRole } = render(<Bear bear={mockBear} pickThisBear={mockPickWinner} nodeId={nodeId} />);
         const bearPickButton = getByRole('button', { name: pickLabel });
 
         fireEvent.click(bearPickButton);

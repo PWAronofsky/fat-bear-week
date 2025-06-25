@@ -162,32 +162,51 @@ export const Bracket = () => {
     }
   }
   return (
-    <div className="page-container-grid">
+    <div className="page-container">
       <Xwrapper>
-        <Matchup matchup={matchupMap[1]} pickWinner={pickWinner}/>
-        <Matchup matchup={matchupMap[2]} pickWinner={pickWinner}/>
-        <Matchup matchup={matchupMap[5]} pickWinner={pickWinner}/>
-        <Matchup matchup={matchupMap[6]} pickWinner={pickWinner}/>
-        <Matchup matchup={matchupMap[9]} pickWinner={pickWinner}/>
-        <Matchup matchup={matchupMap[11]} pickWinner={pickWinner}/>
-        <div id="champion-container" className="bear column center" style={{ gridRow: "1", gridColumn: "4" }}>
-          <div>
-            Champion
-          </div>
-          {champion && (<img className="bear-image shadowed" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} alt="champion profile"/>)}
-          <div className="champion-name" data-testid="champion-name">
-            {champion?.tagNumber} {champion?.name}
-          </div>
-          <button className="btn btn-secondary btn-sm shadowed" onClick={submitBracket} disabled={!canEditBracket}>Submit</button>
-          {showSuccess && 
-            <div>Success!</div>
-          }
+        <div className="column flex-one">
+          <Matchup matchup={matchupMap[1]} pickWinner={pickWinner}/>
+          <Matchup matchup={matchupMap[2]} pickWinner={pickWinner}/>
         </div>
-        <Matchup matchup={matchupMap[10]} pickWinner={pickWinner}/>
-        <Matchup matchup={matchupMap[7]} pickWinner={pickWinner}/>
-        <Matchup matchup={matchupMap[8]} pickWinner={pickWinner}/>
-        <Matchup matchup={matchupMap[3]} pickWinner={pickWinner}/>
-        <Matchup matchup={matchupMap[4]} pickWinner={pickWinner}/>
+        <div className="column flex-one">
+          <Matchup matchup={matchupMap[5]} pickWinner={pickWinner} offsetTop={60}/>
+          <Matchup matchup={matchupMap[6]} pickWinner={pickWinner} offsetBottom={60}/>
+        </div>
+        <Matchup matchup={matchupMap[9]} pickWinner={pickWinner} spaceBetween={true} offsetTop={120} offsetBottom={120} />
+        
+        <div id="champion-container" className="bear column center flex-one">
+          
+          {champion && (
+            <div className="bear column center" style={{position: "absolute", top: 60}}>
+              <div>
+                Champion
+              </div>
+              <img className="bear-image shadowed" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} alt="champion profile"/>
+              <div className="champion-name" data-testid="champion-name">
+                {champion?.tagNumber} {champion?.name}
+              </div>
+              <button className="btn btn-secondary btn-sm shadowed" onClick={submitBracket} disabled={!canEditBracket}>Submit</button>
+              {showSuccess && 
+                <div>Success!</div>
+              }
+            </div>
+          )}
+          
+
+          <Matchup matchup={matchupMap[11]} pickWinner={pickWinner}/>
+        </div>
+
+        <Matchup matchup={matchupMap[10]} pickWinner={pickWinner} spaceBetween={true} offsetTop={120} offsetBottom={120} />
+        <div className="column flex-one">
+          <Matchup matchup={matchupMap[7]} pickWinner={pickWinner} offsetTop={60}/>
+          <Matchup matchup={matchupMap[8]} pickWinner={pickWinner} offsetBottom={60}/>
+        </div>
+        <div className="column flex-one">
+          <Matchup matchup={matchupMap[3]} pickWinner={pickWinner}/>
+          <Matchup matchup={matchupMap[4]} pickWinner={pickWinner}/>
+        </div>
+        
+        
         {/* Bracket Lines - Left Side */}
         <Xarrow start={getNodeId(1, 0)} end={getNodeId(5, 0)} color="black" showHead={false} startAnchor={'right'} endAnchor={'left'} path={'grid'} />
         <Xarrow start={getNodeId(1, 1)} end={getNodeId(5, 0)} color="black" showHead={false} startAnchor={'right'} endAnchor={'left'} path={'grid'} />

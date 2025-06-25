@@ -27,17 +27,13 @@
   min-height: 600px
 }
 
-.page-container-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  min-height: 100vh;
-  width: 100vw;
-}
+
+ .flex-one {
+  flex: 1
+ }
 
 .column {
   display: flex;
-  flex: 1;
   flex-direction: column;
   justify-content: space-between;
 }

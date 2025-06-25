@@ -4,10 +4,13 @@ import { getNodeId } from '../util';
 
 export interface MatchupProps {
     matchup: MatchupType,
+    offsetTop?: number,
+    offsetBottom?: number,
+    spaceBetween?: boolean,
     pickWinner: (matchupId: number, bearId: number) => void
   }
   
-  export const Matchup = ({ matchup, pickWinner }: MatchupProps) => {
+  export const Matchup = ({ matchup, offsetTop, offsetBottom, spaceBetween, pickWinner }: MatchupProps) => {
     const matchupId = matchup.id;
   
     const pickThisBear = (bearId?: number) => {
@@ -15,9 +18,9 @@ export interface MatchupProps {
     }
     
     return (
-      <>
-        <Bear bear={matchup.bear1} pickThisBear={pickThisBear} nodeId={getNodeId(matchup.id, 0)} row={matchup.bear1Row} column={matchup.column}/>
-        <Bear bear={matchup.bear2} pickThisBear={pickThisBear} nodeId={getNodeId(matchup.id, 1)} row={matchup.bear2Row} column={matchup.column}/>
-      </>
+      <div className={spaceBetween ? "column": ""}>
+        <Bear bear={matchup.bear1} pickThisBear={pickThisBear} nodeId={getNodeId(matchup.id, 0)} offsetTop={offsetTop}/>
+        <Bear bear={matchup.bear2} pickThisBear={pickThisBear} nodeId={getNodeId(matchup.id, 1)} offsetBottom={offsetBottom}/>
+      </div>
     )
   }

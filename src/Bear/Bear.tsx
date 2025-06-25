@@ -8,11 +8,11 @@ export interface BearProps {
   bear?: BearType
   pickThisBear: (id?: number) => void
   nodeId: string,
-  row: number,
-  column: number
+  offsetTop?: number,
+  offsetBottom?: number,
 }
 
-export const Bear = ({ bear, pickThisBear, nodeId, row, column }: BearProps) => {
+export const Bear = ({ bear, pickThisBear, nodeId, offsetTop, offsetBottom }: BearProps) => {
   const [showAfterPic, setShowAfterPic] = React.useState(true);
   // const [imgStyle, setImgStyle] = React.useState("missing-image");
   const { canEditBracket } = useUserContext();
@@ -30,7 +30,7 @@ export const Bear = ({ bear, pickThisBear, nodeId, row, column }: BearProps) => 
   useXarrow()
   
   return (
-    <div className="bear column center" style={{ gridRow: `${row}`, gridColumn: `${column}` }}>
+    <div className="bear column center" style={{ marginTop: offsetTop, marginBottom: offsetBottom }}>
       <input id={nodeId} ref={inputRef} type="image" 
         onClick={() => setShowAfterPic(!showAfterPic)} 
         className={`bear-image shadowed`}
