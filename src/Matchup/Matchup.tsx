@@ -6,11 +6,11 @@ export interface MatchupProps {
     matchup: MatchupType,
     offsetTop?: number,
     offsetBottom?: number,
-    spaceBetween?: boolean,
+    thirdRound?: boolean,
     pickWinner: (matchupId: number, bearId: number) => void
   }
   
-  export const Matchup = ({ matchup, offsetTop, offsetBottom, spaceBetween, pickWinner }: MatchupProps) => {
+  export const Matchup = ({ matchup, offsetTop, offsetBottom, thirdRound, pickWinner }: MatchupProps) => {
     const matchupId = matchup.id;
   
     const pickThisBear = (bearId?: number) => {
@@ -18,7 +18,7 @@ export interface MatchupProps {
     }
     
     return (
-      <div className={spaceBetween ? "column": ""}>
+      <div className={thirdRound ? "column third-round": ""}>
         <Bear bear={matchup.bear1} pickThisBear={pickThisBear} nodeId={getNodeId(matchup.id, 0)} offsetTop={offsetTop}/>
         <Bear bear={matchup.bear2} pickThisBear={pickThisBear} nodeId={getNodeId(matchup.id, 1)} offsetBottom={offsetBottom}/>
       </div>

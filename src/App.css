@@ -27,6 +27,14 @@
   min-height: 600px
 }
 
+.first-round {
+  min-height: 705px;
+}
+
+.third-round {
+  min-height: 690px
+}
+
 
  .flex-one {
   flex: 1

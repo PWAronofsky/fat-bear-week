@@ -164,7 +164,7 @@ export const Bracket = () => {
   return (
     <div className="page-container">
       <Xwrapper>
-        <div className="column flex-one">
+        <div className="column flex-one first-round">
           <Matchup matchup={matchupMap[1]} pickWinner={pickWinner}/>
           <Matchup matchup={matchupMap[2]} pickWinner={pickWinner}/>
         </div>
@@ -172,7 +172,7 @@ export const Bracket = () => {
           <Matchup matchup={matchupMap[5]} pickWinner={pickWinner} offsetTop={60}/>
           <Matchup matchup={matchupMap[6]} pickWinner={pickWinner} offsetBottom={60}/>
         </div>
-        <Matchup matchup={matchupMap[9]} pickWinner={pickWinner} spaceBetween={true} offsetTop={120} offsetBottom={120} />
+        <Matchup matchup={matchupMap[9]} pickWinner={pickWinner} thirdRound={true} offsetTop={120} offsetBottom={120} />
         
         <div id="champion-container" className="bear column center flex-one">
           
@@ -196,12 +196,12 @@ export const Bracket = () => {
           <Matchup matchup={matchupMap[11]} pickWinner={pickWinner}/>
         </div>
 
-        <Matchup matchup={matchupMap[10]} pickWinner={pickWinner} spaceBetween={true} offsetTop={120} offsetBottom={120} />
+        <Matchup matchup={matchupMap[10]} pickWinner={pickWinner} thirdRound={true} offsetTop={120} offsetBottom={120} />
         <div className="column flex-one">
           <Matchup matchup={matchupMap[7]} pickWinner={pickWinner} offsetTop={60}/>
           <Matchup matchup={matchupMap[8]} pickWinner={pickWinner} offsetBottom={60}/>
         </div>
-        <div className="column flex-one">
+        <div className="column flex-one first-round">
           <Matchup matchup={matchupMap[3]} pickWinner={pickWinner}/>
           <Matchup matchup={matchupMap[4]} pickWinner={pickWinner}/>
         </div>
