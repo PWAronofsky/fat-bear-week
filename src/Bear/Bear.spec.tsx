@@ -12,8 +12,9 @@ const pickLabel = a11yLabels.pickBear(mockBear.tagNumber, mockBear.name);
 const nodeId = "mock-node-1-1"
 
 const mockUserContext = { 
-    updateUser: jest.fn(),
+    login: jest.fn(),
     logout: jest.fn(),
+    register: jest.fn(),
     canEditBracket: true,
     isLoggedIn: true,
     user: { username: 'test', token: 'abc' }

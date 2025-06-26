@@ -67,7 +67,7 @@ export const Bracket = () => {
 
     const getBracket = async () => {
       try {
-        await Axios.post("/bracket/get", {token: user?.token }).then((response) => {
+        await Axios.post("/bracket/get", { token: user?.token }).then((response) => {
           if(isCancelled) {
             return;
           }
@@ -153,7 +153,7 @@ export const Bracket = () => {
 
   const submitBracket = async () => {
     try {
-      await Axios.post("/bracket/update-create", { token: user?.token, bracketMap: matchupMap}).then((response) => {
+      await Axios.post("/bracket/update-create", { token: user?.token, bracketMap: matchupMap }).then((response) => {
           setShowSuccess(true);
           console.log("bracket saved")
         });

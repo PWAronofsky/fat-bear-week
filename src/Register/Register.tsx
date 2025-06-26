@@ -12,21 +12,15 @@ export const Register = () => {
   const [errorMessage, setErrorMessage] = React.useState('');
 
   const navigate = useNavigate();
-  const { updateUser } = useUserContext();
+  const { register } = useUserContext();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setFetchingData(true);
     try {
-        await Axios.post("/register", { username, email, password, leagueId }).then((response) => {
-          updateUser({
-            username: response.data.username,
-            token: response.data.token
-          });
-  
-          navigate("/bracket");
-        });
-        console.log("User was successfully created.");
+        await register(username, email, password, leagueId).then(success => {
+          success && navigate("/bracket");
+        })
     } catch (e: any) {
       setFetchingData(false);
       setErrorMessage(e?.response?.data?.join(" "));

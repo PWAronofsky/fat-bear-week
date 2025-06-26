@@ -13,8 +13,9 @@ const bear2BeforeLabel = a11yLabels.beforeAfterButton(true, mockMatchup.bear2?.t
 const bear2PickLabel = a11yLabels.pickBear(mockMatchup.bear2?.tagNumber, mockMatchup.bear2?.name);
 
 const mockUserContext = { 
-    updateUser: jest.fn(),
+    login: jest.fn(),
     logout: jest.fn(),
+    register: jest.fn(),
     canEditBracket: true,
     isLoggedIn: true,
     user: { username: 'test', token: 'abc' }

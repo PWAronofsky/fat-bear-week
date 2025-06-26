@@ -9,28 +9,21 @@ export const Header = React.forwardRef ((_, ref) => {
   const [fetchingData, setFetchingData] = React.useState(false);
 
   const navigate = useNavigate();
-  const { isLoggedIn, updateUser, logout } = useUserContext();
+  const { isLoggedIn, login, logout } = useUserContext();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     setFetchingData(true);
     let isCanceled = false;
     try {
-      await Axios.post("/login", { username, password }).then((response) => {
-        if(!isCanceled) {
-          updateUser({
-            username: response.data.username,
-            token: response.data.token
-          });
+      login(username, password).then((success) => {
+        if(isCanceled) return;
+        setUsername('');
+        setPassword('');
+        setFetchingData(false);
 
-          setUsername('');
-          setPassword('');
-          setFetchingData(false);
-
-          navigate("/bracket");
-        }
+        success && navigate("/bracket");
       });
-      console.log("User was successfully logged in.");
     } catch (e: any) {
       setFetchingData(false);
     }
