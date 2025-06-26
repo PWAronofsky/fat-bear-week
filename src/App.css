@@ -35,6 +35,10 @@
   min-height: 690px
 }
 
+.final-round {
+  min-height: 725px
+}
+
 
  .flex-one {
   flex: 1

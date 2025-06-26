@@ -174,7 +174,7 @@ export const Bracket = () => {
         </div>
         <Matchup matchup={matchupMap[9]} pickWinner={pickWinner} thirdRound={true} offsetTop={120} offsetBottom={120} />
         
-        <div id="champion-container" className="bear column center flex-one">
+        <div id="champion-container" className="bear column center flex-one final-round">
           
           {champion && (
             <div className="bear column center" style={{position: "absolute", top: 60}}>
