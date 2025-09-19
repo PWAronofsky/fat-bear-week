@@ -7,6 +7,7 @@ import { Register } from '../Register/Register';
 import { Standings } from '../Standings/Standings';
 import { useUserContext } from '../contexts/userContext';
 import { Footer } from '../Footer/Footer';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export const Router = () => {
   const headerRef = React.useRef<HTMLElement>(null);
@@ -58,9 +59,9 @@ export const Router = () => {
 }
 
 const ProtectedRoute = ({ children }: any) => {
-  const { isLoggedIn } = useUserContext();
+  const { isAuthenticated } = useUserContext();
 
-  if (!isLoggedIn) {
+  if (!isAuthenticated) {
     return <Navigate to="/" replace />;
   }
 
@@ -68,9 +69,9 @@ const ProtectedRoute = ({ children }: any) => {
 };
 
 const LoggedInRedirect = ({ children }: any) => {
-  const { isLoggedIn } = useUserContext();
+  const { isAuthenticated } = useAuth0();
 
-  if (isLoggedIn) {
+  if (isAuthenticated) {
     return <Navigate to="/bracket" replace />;
   }
 

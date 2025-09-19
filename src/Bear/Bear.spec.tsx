@@ -16,7 +16,7 @@ const mockUserContext = {
     logout: jest.fn(),
     register: jest.fn(),
     canEditBracket: true,
-    isLoggedIn: true,
+    isAuthenticated: true,
     user: { username: 'test', token: 'abc' }
   };
 

@@ -4,34 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../contexts/userContext';
 
 export const Header = React.forwardRef ((_, ref) => {
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [fetchingData, setFetchingData] = React.useState(false);
 
   const navigate = useNavigate();
-  const { isLoggedIn, login, logout } = useUserContext();
+  const { isAuthenticated, logout } = useUserContext();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFetchingData(true);
-    let isCanceled = false;
-    try {
-      login(username, password).then((success) => {
-        if(isCanceled) return;
-        setUsername('');
-        setPassword('');
-        setFetchingData(false);
-
-        success && navigate("/bracket");
-      });
-    } catch (e: any) {
-      setFetchingData(false);
-    }
-    
-    return () => {
-      isCanceled = true;
-    }
-  }
 
   return (
     <header className="header-bar" ref={ref as React.RefObject<HTMLElement>}>
@@ -41,7 +17,7 @@ export const Header = React.forwardRef ((_, ref) => {
               <a href="/" aria-label="home">
                 <img className="header-icon" src={require("../images/bear-2-48.png")} alt=""/>
               </a>
-              {isLoggedIn && (
+              {isAuthenticated && (
                 <>
                   <a href="/bracket" className="nav-link text-white">
                     Bracket
@@ -57,25 +33,8 @@ export const Header = React.forwardRef ((_, ref) => {
             </div>
         </h4>
         <div className="header-section no-wrap">
-          <form onSubmit={handleSubmit}>
-            <div className="row align-items-end no-wrap">
-              {!isLoggedIn && (
-                <>
-                  <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
-                    <input onChange={e => setUsername(e.target.value)} name="username" className="form-control form-control-sm input-dark" type="text" placeholder="Username" autoComplete="off" />
-                  </div>
-                  <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
-                    <input onChange={e => setPassword(e.target.value)} name="password" className="form-control form-control-sm input-dark" type="password" placeholder="Password" />
-                  </div>
-                  <div className="col-md-auto">
-                    <button className="btn btn-success btn-sm" disabled={fetchingData}>Log In</button>
-                  </div>
-                </>
-              )}
-              </div>
-          </form>
 
-          {isLoggedIn && (
+          {isAuthenticated && (
             <div className="col-md-auto">
               <button onClick={logout} className="btn btn-success btn-sm">Log Out</button>
             </div>
