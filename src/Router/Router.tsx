@@ -13,17 +13,18 @@ export const Router = () => {
   const [height, setHeight] = React.useState(0);
 
   React.useEffect(() => {
+    const header = headerRef.current;
     const observer = new ResizeObserver(entries => {
       setHeight(entries[0].contentRect.height);
     });
 
-    if (headerRef.current) {
-      observer.observe(headerRef.current);
+    if (header) {
+      observer.observe(header);
     }
 
     return () => {
-      if (headerRef.current) {
-        observer.unobserve(headerRef.current);
+      if (header) {
+        observer.unobserve(header);
       }
     };
   }, []);
