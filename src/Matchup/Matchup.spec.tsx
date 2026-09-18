@@ -12,12 +12,11 @@ const bear1PickLabel = a11yLabels.pickBear(mockMatchup.bear1?.tagNumber, mockMat
 const bear2BeforeLabel = a11yLabels.beforeAfterButton(true, mockMatchup.bear2?.tagNumber, mockMatchup.bear2?.name);
 const bear2PickLabel = a11yLabels.pickBear(mockMatchup.bear2?.tagNumber, mockMatchup.bear2?.name);
 
-const mockUserContext = { 
-    login: jest.fn(),
+const mockUserContext = {
     logout: jest.fn(),
-    register: jest.fn(),
     canEditBracket: true,
     isLoggedIn: true,
+    isLoading: false,
     user: { username: 'test', token: 'abc' }
   };
 

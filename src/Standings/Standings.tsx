@@ -9,7 +9,7 @@ export const Standings = () => {
   React.useEffect(() => {
     const getStandings = async () => {
       let canceled = false;
-      await Axios.post("/getStandings", { token: user?.token }).then((response) => {
+      await Axios.post("/getStandings").then((response) => {
         if(!canceled && response.data) {
           try{
             setStandings(response.data);

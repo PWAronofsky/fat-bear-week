@@ -1,85 +1,57 @@
 import React from 'react';
-import Axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useUserContext } from '../contexts/userContext';
 
 export const Header = React.forwardRef ((_, ref) => {
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [fetchingData, setFetchingData] = React.useState(false);
+  const { loginWithRedirect } = useAuth0();
+  const { isLoggedIn, logout } = useUserContext();
 
-  const navigate = useNavigate();
-  const { isLoggedIn, login, logout } = useUserContext();
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFetchingData(true);
-    let isCanceled = false;
-    try {
-      login(username, password).then((success) => {
-        if(isCanceled) return;
-        setUsername('');
-        setPassword('');
-        setFetchingData(false);
-
-        success && navigate("/bracket");
-      });
-    } catch (e: any) {
-      setFetchingData(false);
-    }
-    
-    return () => {
-      isCanceled = true;
-    }
-  }
+  const login = () => loginWithRedirect();
+  const signup = () => loginWithRedirect({ authorizationParams: { screen_hint: 'signup' } });
 
   return (
     <header className="header-bar" ref={ref as React.RefObject<HTMLElement>}>
       <div className="header-container">
         <h4 className="font-weight-normal header-section">
             <div className="row no-wrap">
-              <a href="/" aria-label="home">
+              <Link to="/" aria-label="home">
                 <img className="header-icon" src={require("../images/bear-2-48.png")} alt=""/>
-              </a>
+              </Link>
               {isLoggedIn && (
                 <>
-                  <a href="/bracket" className="nav-link text-white">
+                  <Link to="/bracket" className="nav-link text-white">
                     Bracket
-                  </a>
-                  <a href="/standings" className="nav-link text-white">
+                  </Link>
+                  <Link to="/standings" className="nav-link text-white">
                     Standings
-                  </a>
+                  </Link>
                 </>
               )}
-              <a href="/about" className="nav-link text-white">
+              <Link to="/about" className="nav-link text-white">
                 About
-              </a>
+              </Link>
             </div>
         </h4>
         <div className="header-section no-wrap">
-          <form onSubmit={handleSubmit}>
-            <div className="row align-items-end no-wrap">
-              {!isLoggedIn && (
-                <>
-                  <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
-                    <input onChange={e => setUsername(e.target.value)} name="username" className="form-control form-control-sm input-dark" type="text" placeholder="Username" autoComplete="off" />
-                  </div>
-                  <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
-                    <input onChange={e => setPassword(e.target.value)} name="password" className="form-control form-control-sm input-dark" type="password" placeholder="Password" />
-                  </div>
-                  <div className="col-md-auto">
-                    <button className="btn btn-success btn-sm" disabled={fetchingData}>Log In</button>
-                  </div>
-                </>
-              )}
-              </div>
-          </form>
+          <div className="row align-items-end no-wrap">
+            {!isLoggedIn && (
+              <>
+                <div className="col-md-auto">
+                  <button onClick={login} className="btn btn-success btn-sm">Log In</button>
+                </div>
+                <div className="col-md-auto">
+                  <button onClick={signup} className="btn btn-success btn-sm">Sign Up</button>
+                </div>
+              </>
+            )}
 
-          {isLoggedIn && (
-            <div className="col-md-auto">
-              <button onClick={logout} className="btn btn-success btn-sm">Log Out</button>
-            </div>
-          )}
+            {isLoggedIn && (
+              <div className="col-md-auto">
+                <button onClick={logout} className="btn btn-success btn-sm">Log Out</button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </header>

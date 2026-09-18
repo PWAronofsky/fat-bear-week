@@ -58,7 +58,11 @@ export const Router = () => {
 }
 
 const ProtectedRoute = ({ children }: any) => {
-  const { isLoggedIn } = useUserContext();
+  const { isLoggedIn, isLoading } = useUserContext();
+
+  if (isLoading) {
+    return null;
+  }
 
   if (!isLoggedIn) {
     return <Navigate to="/" replace />;
@@ -68,7 +72,11 @@ const ProtectedRoute = ({ children }: any) => {
 };
 
 const LoggedInRedirect = ({ children }: any) => {
-  const { isLoggedIn } = useUserContext();
+  const { isLoggedIn, isLoading } = useUserContext();
+
+  if (isLoading) {
+    return null;
+  }
 
   if (isLoggedIn) {
     return <Navigate to="/bracket" replace />;

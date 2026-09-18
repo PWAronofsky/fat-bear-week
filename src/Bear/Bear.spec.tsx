@@ -11,12 +11,11 @@ const afterLabel = a11yLabels.beforeAfterButton(false, mockBear.tagNumber, mockB
 const pickLabel = a11yLabels.pickBear(mockBear.tagNumber, mockBear.name);
 const nodeId = "mock-node-1-1"
 
-const mockUserContext = { 
-    login: jest.fn(),
+const mockUserContext = {
     logout: jest.fn(),
-    register: jest.fn(),
     canEditBracket: true,
     isLoggedIn: true,
+    isLoading: false,
     user: { username: 'test', token: 'abc' }
   };
 

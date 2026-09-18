@@ -1,122 +1,70 @@
 import React from 'react';
 import Axios from 'axios';
+import { useAuth0 } from '@auth0/auth0-react';
 import { User } from '../types';
 
 interface UserContextType {
   user?: User,
   canEditBracket: boolean,
   isLoggedIn: boolean,
-  login: (username: string, password: string) => Promise<boolean>,
+  isLoading: boolean,
   logout: () => void,
-  register: (username: string, email: string, password: string, leagueId: string) => Promise<boolean>
 }
 
 const UserContext = React.createContext<UserContextType>({
   user: undefined,
   canEditBracket: false,
   isLoggedIn: false,
-  login: function () { return Promise.resolve(false)},
+  isLoading: true,
   logout: function () {},
-  register: function () { return Promise.resolve(false)},
 });
 
 export const UserContextProvider = ({ children }: any) => {
+  const { user: auth0User, isAuthenticated, isLoading, getAccessTokenSilently, logout: auth0Logout } = useAuth0();
   const [user, setUser] = React.useState<User>();
-  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   const [canEditBracket, setCanEditBracket] = React.useState(false);
 
-  const logout = React.useCallback(() => {
-    window.localStorage.removeItem("USERNAME");
-    window.localStorage.removeItem("TOKEN");
-    setIsLoggedIn(false);
-    setUser(undefined);
+  const checkCanEditBracket = React.useCallback(async (): Promise<void> => {
+    try {
+      const response = await Axios.post("/bracket/canEdit");
+      setCanEditBracket(!!response?.data);
+    } catch {
+      setCanEditBracket(false);
+    }
   }, []);
 
-  const updateUser = React.useCallback((user?: User) => {
-    if(!user) {
-      logout();
+  React.useEffect(() => {
+    let isCancelled = false;
+
+    if (!isAuthenticated || !auth0User) {
+      setUser(undefined);
+      setCanEditBracket(false);
+      delete Axios.defaults.headers.common['Authorization'];
       return;
     }
 
-    window.localStorage.setItem("USERNAME", user.username);
-    window.localStorage.setItem("TOKEN", user.token);
-    setIsLoggedIn(true);
-    setUser(user);
-  }, [logout]);
+    getAccessTokenSilently().then((token) => {
+      if (isCancelled || !token) return;
 
-  const login = async (username: string, password: string): Promise<boolean> => {
-    return await Axios.post("/login", { username, password }).then(async (response) => {
-        return await checkCanEditBracket(response.data.token).then(_ => {
-          updateUser({
-            username: response.data.username,
-            token: response.data.token
-          });
+      Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-          return response.status == 200
-        })
-    });
-  }
-
-  const register = async (username: string, email: string, password: string, leagueId: string): Promise<boolean> => {
-    return await Axios.post("/register", { username, email, password, leagueId }).then((response) => {
-      if(response.data?.username && response.data?.token) {
-        updateUser({
-          username: response.data?.username,
-          token: response.data?.token
-        });
-      }
-      return response.status == 200
-    });
-  }
-
-  const checkToken = async (token: string): Promise<boolean> => {
-    const response = await Axios.post("/checktoken", { token });
-    console.log(`Token Checked`);
-    return !!response?.data;
-  };
-
-  const checkCanEditBracket = async (token: string): Promise<boolean> => {
-    const response = await Axios.post("/bracket/canEdit", { token });
-    console.log(`Can Edit Bracket Checked`);
-    let canEditBracket = !!response?.data
-    setCanEditBracket(canEditBracket)
-    return canEditBracket
-  }
-
-  React.useEffect(() => {
-    if(!user?.username) {
-      var isCancelled = false;
-      const username = window.localStorage.getItem("USERNAME");
-      const token = window.localStorage.getItem("TOKEN");
-
-      if(!username || !token) {
-        setIsLoggedIn(false);
-        updateUser()
-        return;
-      }
-
-      checkToken(token).then(isValid => {
-        if(isCancelled) return;
-        if(isValid) {
-          checkCanEditBracket(token)
-          updateUser({
-            username: username,
-            token: token
-          });
-        } else {
-          setIsLoggedIn(false);
-          updateUser()
-          return;
-        }
+      setUser({
+        username: auth0User.name ?? auth0User.email ?? auth0User.sub ?? '',
+        token
       });
+      checkCanEditBracket();
+    });
 
-      return () => {
-        isCancelled = true
-      }
+    return () => {
+      isCancelled = true;
     }
-  }, [user?.username, updateUser]);
+  }, [isAuthenticated, auth0User, getAccessTokenSilently, checkCanEditBracket]);
 
-  const contextValues = { user, canEditBracket, isLoggedIn, login, logout, register };
+  const logout = React.useCallback(() => {
+    auth0Logout({ logoutParams: { returnTo: window.location.origin } });
+  }, [auth0Logout]);
+
+  const contextValues = { user, canEditBracket, isLoggedIn: isAuthenticated, isLoading, logout };
 
   return (
     <UserContext.Provider value={contextValues}>
