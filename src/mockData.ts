@@ -3,109 +3,115 @@ import { BearType, MatchupType, MatchupMap } from './types';
 export const mockBears: BearType[] = [
   {
     id: 1,
-    tagNumber: 806,
-    name: 'Spring Cub',
-    beforeImgSrc: '806-before.png',
-    afterImgSrc: '806-after.png'
+    tagNumber: 132,
+    name: 'Family',
+    beforeImgSrc: '132-fam-before.png',
+    afterImgSrc: '132-fam-after.png'
   },
   {
     id: 2,
-    tagNumber: 428,
-    name: '',
-    beforeImgSrc: '428-before.png',
-    afterImgSrc: '428-after.png'
+    tagNumber: 284,
+    name: 'Family',
+    beforeImgSrc: '284-fam-before.png',
+    afterImgSrc: '284-fam-after.png'
   },
   {
     id: 3,
-    tagNumber: 402,
-    name: '',
-    beforeImgSrc: '402-before.png',
-    afterImgSrc: '402-after.png'
+    tagNumber: 806,
+    name: 'Family',
+    beforeImgSrc: '806-fam-before.png',
+    afterImgSrc: '806-fam-after.png'
   },
   {
     id: 4,
     tagNumber: 901,
-    name: '',
-    beforeImgSrc: '901-before.png',
-    afterImgSrc: '901-after.png'
+    name: 'Family',
+    beforeImgSrc: '901-fam-before.png',
+    afterImgSrc: '901-fam-after.png'
   },
   {
     id: 5,
-    tagNumber: 128,
-    name: 'Grazer',
-    beforeImgSrc: '128-before.png',
-    afterImgSrc: '128-after.png'
+    tagNumber: 909,
+    name: '',
+    beforeImgSrc: '909-before.png',
+    afterImgSrc: '909-after.png'
   },
   {
     id: 6,
-    tagNumber: 151,
-    name: 'Walker',
-    beforeImgSrc: '151-before.png',
-    afterImgSrc: '151-after.png'
+    tagNumber: 428,
+    name: 'Studious',
+    beforeImgSrc: '428-before.png',
+    afterImgSrc: '428-after.png'
   },
   {
     id: 7,
-    tagNumber: 284,
-    name: 'Electra',
-    beforeImgSrc: '284-before.png',
-    afterImgSrc: '284-after.png'
+    tagNumber: 131,
+    name: '',
+    beforeImgSrc: '131-before.png',
+    afterImgSrc: '131-after.png'
   },
   {
     id: 8,
-    tagNumber: 164,
-    name: 'Bucky Dent',
-    beforeImgSrc: '164-before.png',
-    afterImgSrc: '164-after.png'
+    tagNumber: 910,
+    name: '',
+    beforeImgSrc: '910-before.png',
+    afterImgSrc: '910-after.png'
   },
   {
     id: 9,
+    tagNumber: 694,
+    name: '',
+    beforeImgSrc: '694-before.png',
+    afterImgSrc: '694-after.png'
+  },
+  {
+    id: 10,
+    tagNumber: 620,
+    name: '',
+    beforeImgSrc: '620-before.png',
+    afterImgSrc: '620-after.png'
+  },
+  {
+    id: 11,
+    tagNumber: 610,
+    name: 'Family',
+    beforeImgSrc: '610-fam-before.png',
+    afterImgSrc: '610-fam-after.png'
+  },
+  {
+    id: 12,
+    tagNumber: 89,
+    name: 'Backpack',
+    beforeImgSrc: '89-before.png',
+    afterImgSrc: '89-after.png'
+  },
+  {
+    id: 13,
     tagNumber: 32,
     name: 'Chunk',
     beforeImgSrc: '32-before.png',
     afterImgSrc: '32-after.png'
   },
   {
-    id: 10,
-    tagNumber: 480,
-    name: 'Otis',
-    beforeImgSrc: '480-before.png',
-    afterImgSrc: '480-after.png'
-  },
-  {
-    id: 11,
-    tagNumber: 747,
-    name: '',
-    beforeImgSrc: '747-before.png',
-    afterImgSrc: '747-after.png'
-  },
-  {
-    id: 12,
-    tagNumber: 435,
-    name: 'Holly',
-    beforeImgSrc: '435-before.png',
-    afterImgSrc: '435-after.png'
-  },
-  // TODO: placeholders for the 4 bears added to the field this year.
-  // Swap in real tag numbers, names, and before/after images.
-  {
-    id: 13,
-    tagNumber: 0,
-    name: 'TBD 1'
-  },
-  {
     id: 14,
-    tagNumber: 0,
-    name: 'TBD 2'
+    tagNumber: 164,
+    name: 'Bucky',
+    beforeImgSrc: '164-before.png',
+    afterImgSrc: '164-after.png'
   },
   {
     id: 15,
-    tagNumber: 0,
-    name: 'TBD 3'
+    tagNumber: 151,
+    name: 'Walker',
+    beforeImgSrc: '151-before.png',
+    afterImgSrc: '151-after.png'
   },
   {
     id: 16,
-    tagNumber: 0,
-    name: 'TBD 4'
+    tagNumber: 903,
+    name: 'Gully',
+    beforeImgSrc: '903-before.png',
+    afterImgSrc: '903-after.png'
   }
 ];
 
@@ -123,8 +129,8 @@ export const mockMatchups: MatchupType[] = [
   },
   {
     id: 2,
-    bear1: mockBears[12],
-    bear2: mockBears[8],
+    bear1: mockBears[2],
+    bear2: mockBears[3],
     nextMatchup: 9,
     pickedWinner: undefined,
     column: 1,
@@ -133,8 +139,8 @@ export const mockMatchups: MatchupType[] = [
   },
   {
     id: 3,
-    bear1: mockBears[2],
-    bear2: mockBears[3],
+    bear1: mockBears[4],
+    bear2: mockBears[5],
     nextMatchup: 10,
     pickedWinner: undefined,
     column: 1,
@@ -143,8 +149,8 @@ export const mockMatchups: MatchupType[] = [
   },
   {
     id: 4,
-    bear1: mockBears[13],
-    bear2: mockBears[9],
+    bear1: mockBears[6],
+    bear2: mockBears[7],
     nextMatchup: 10,
     pickedWinner: undefined,
     column: 1,
@@ -154,8 +160,8 @@ export const mockMatchups: MatchupType[] = [
   // Round 1 - right side
   {
     id: 5,
-    bear1: mockBears[4],
-    bear2: mockBears[5],
+    bear1: mockBears[8],
+    bear2: mockBears[9],
     nextMatchup: 11,
     pickedWinner: undefined,
     column: 7,
@@ -164,8 +170,8 @@ export const mockMatchups: MatchupType[] = [
   },
   {
     id: 6,
-    bear1: mockBears[14],
-    bear2: mockBears[10],
+    bear1: mockBears[10],
+    bear2: mockBears[11],
     nextMatchup: 11,
     pickedWinner: undefined,
     column: 7,
@@ -174,8 +180,8 @@ export const mockMatchups: MatchupType[] = [
   },
   {
     id: 7,
-    bear1: mockBears[6],
-    bear2: mockBears[7],
+    bear1: mockBears[12],
+    bear2: mockBears[13],
     nextMatchup: 12,
     pickedWinner: undefined,
     column: 7,
@@ -184,8 +190,8 @@ export const mockMatchups: MatchupType[] = [
   },
   {
     id: 8,
-    bear1: mockBears[15],
-    bear2: mockBears[11],
+    bear1: mockBears[14],
+    bear2: mockBears[15],
     nextMatchup: 12,
     pickedWinner: undefined,
     column: 7,
