@@ -37,18 +37,18 @@ describe('Bracket Functions', () => {
     test('changing round 1 matchup clears all downstream matchups', () => {
         const filledBracket = {
             ...mockMatchupMap,
-            [5]: {
-                ...mockMatchupMap[5],
-                bear1: mockBears[0],
-                pickedWinner: 1
-            },
             [9]: {
                 ...mockMatchupMap[9],
                 bear1: mockBears[0],
                 pickedWinner: 1
             },
-            [11]: {
-                ...mockMatchupMap[11],
+            [13]: {
+                ...mockMatchupMap[13],
+                bear1: mockBears[0],
+                pickedWinner: 1
+            },
+            [15]: {
+                ...mockMatchupMap[15],
                 bear1: mockBears[0],
                 pickedWinner: 1
             }
@@ -62,19 +62,19 @@ describe('Bracket Functions', () => {
     test('changing round 1 matchup clears downstream until alternate picked winner', () => {
         const filledBracket = {
             ...mockMatchupMap,
-            [5]: {
-                ...mockMatchupMap[5],
+            [9]: {
+                ...mockMatchupMap[9],
                 bear1: mockBears[0],
                 pickedWinner: 1
             },
-            [9]: {
-                ...mockMatchupMap[9],
+            [13]: {
+                ...mockMatchupMap[13],
                 bear1: mockBears[0],
                 bear2: mockBears[9],
                 pickedWinner: 10
             },
-            [11]: {
-                ...mockMatchupMap[11],
+            [15]: {
+                ...mockMatchupMap[15],
                 bear1: mockBears[9],
                 bear2: mockBears[4],
                 pickedWinner: 10
@@ -82,14 +82,14 @@ describe('Bracket Functions', () => {
         }
 
         const expectedBracket = {
-            ...filledBracket, 
-            [5]: {
-                ...filledBracket[5],
+            ...filledBracket,
+            [9]: {
+                ...filledBracket[9],
                 bear1: undefined,
                 pickedWinner: undefined
             },
-            [9]: {
-                ...filledBracket[9],
+            [13]: {
+                ...filledBracket[13],
                 bear1: undefined
             },
         }

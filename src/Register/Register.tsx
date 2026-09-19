@@ -18,7 +18,7 @@ export const Register = () => {
           <button onClick={signup} className="py-3 mt-4 btn btn-lg btn-success btn-block">
             Sign Up
           </button>
-          <button onClick={login} className="py-3 mt-3 btn btn-lg btn-outline-success btn-block">
+          <button onClick={login} className="py-3 mt-3 btn btn-lg btn-secondary btn-block">
             Log In
           </button>
         </div>
