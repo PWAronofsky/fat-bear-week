@@ -162,7 +162,7 @@ export const Bracket = () => {
     }
   }
   return (
-    <div className="page-container">
+    <div className="page-container bracket-container">
       <Xwrapper>
         <div className="bracket-side bracket-side-left">
           <div className="bracket-cell" style={{ gridColumn: 1, gridRow: 1 }}>
