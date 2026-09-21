@@ -4,11 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useUserContext } from '../contexts/userContext';
 
 export const Header = React.forwardRef ((_, ref) => {
-  const { loginWithRedirect } = useAuth0();
   const { isLoggedIn, logout } = useUserContext();
-
-  const login = () => loginWithRedirect();
-  const signup = () => loginWithRedirect({ authorizationParams: { screen_hint: 'signup' } });
 
   return (
     <header className="header-bar" ref={ref as React.RefObject<HTMLElement>}>
