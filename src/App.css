@@ -134,3 +134,67 @@
 .no-wrap {
   flex-wrap: nowrap;
 }
+
+/* Standings */
+.standings-card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.standings-table thead th {
+  background-color: #158589;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  padding: 14px 20px;
+}
+
+.standings-table td {
+  padding: 14px 20px;
+  border-color: #eee;
+  vertical-align: middle;
+}
+
+.standings-current-user {
+  background-color: rgba(21, 133, 137, 0.08);
+}
+
+.standings-current-user td {
+  font-weight: 600;
+}
+
+.standings-rank,
+.standings-medal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.standings-rank {
+  background-color: #f1f3f5;
+  color: #555;
+}
+
+.standings-medal {
+  color: #fff;
+}
+
+.standings-medal-1 {
+  background: linear-gradient(135deg, #ffd76a, #d4af37);
+}
+
+.standings-medal-2 {
+  background: linear-gradient(135deg, #e2e2e2, #a8a8a8);
+}
+
+.standings-medal-3 {
+  background: linear-gradient(135deg, #e2a76f, #b5651d);
+}
