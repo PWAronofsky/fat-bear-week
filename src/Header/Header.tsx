@@ -35,17 +35,6 @@ export const Header = React.forwardRef ((_, ref) => {
         </h4>
         <div className="header-section no-wrap">
           <div className="row align-items-end no-wrap">
-            {!isLoggedIn && (
-              <>
-                <div className="col-md-auto">
-                  <button onClick={login} className="btn btn-success btn-sm">Log In</button>
-                </div>
-                <div className="col-md-auto">
-                  <button onClick={signup} className="btn btn-success btn-sm">Sign Up</button>
-                </div>
-              </>
-            )}
-
             {isLoggedIn && (
               <div className="col-md-auto">
                 <button onClick={logout} className="btn btn-success btn-sm">Log Out</button>
