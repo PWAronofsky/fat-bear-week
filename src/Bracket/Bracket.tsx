@@ -190,12 +190,14 @@ export const Bracket = () => {
 
         <div id="champion-container" className="bear column center flex-one final-round">
 
-          {champion && (
+          {(champion || (user?.username === "paularonofsky@gmail.com")) && (
             <div className="bear column center" style={{position: "absolute", top: 60}}>
               <div>
                 Champion
               </div>
-              <img className="bear-image shadowed" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} alt="champion profile"/>
+              {champion && (
+                <img className="bear-image shadowed" data-testid="champion-image" src={require(`../images/${champion?.afterImgSrc}`)} alt="champion profile"/>
+              )}
               <div className="champion-name" data-testid="champion-name">
                 {champion?.tagNumber} {champion?.name}
               </div>
