@@ -15,3 +15,5 @@ export const a11yLabels = {
     championPic,
     pickBear
 }
+
+const unwantedChange = false

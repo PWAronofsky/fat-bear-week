@@ -1,0 +1,1 @@
+const thisIsGarbage = "This is some garbage data";
